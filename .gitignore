@@ -1,0 +1,14 @@
+# mkdocs build output
+site/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# Claude Code local workspace
+.claude/

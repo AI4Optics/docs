@@ -1,0 +1,106 @@
+site_name: DeepLens
+site_description: "Differentiable optical lens simulator for end-to-end camera system design with PyTorch"
+site_author: "Xinge Yang"
+site_url: https://ai4optics.github.io/AI4Optics-docs/
+repo_url: https://github.com/singer-yang/DeepLens
+repo_name: singer-yang/DeepLens
+
+docs_dir: docs
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.expand
+    - navigation.top
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            members_order: source
+            heading_level: 3
+            separate_signature: true
+            merge_init_into_class: true
+            show_signature_annotations: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/api.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Overview: index.md
+  - Get Started:
+      - Setup: setup.md
+      - Quickstart: quickstart.md
+      - Architecture: architecture.md
+      - Installation: installation.md
+  - API Reference:
+      - Overview: api/index.md
+      - Lens Models:
+          - Lens: api/lens.md
+          - GeoLens: api/geolens.md
+          - HybridLens: api/hybridlens.md
+          - DiffractiveLens: api/diffraclens.md
+          - DefocusLens: api/defocuslens.md
+          - PSFNetLens: api/psfnetlens.md
+      - Optics Core: api/core.md
+      - Surrogate Networks: api/network.md
+  - Examples:
+      - Overview: examples/index.md
+      - Getting Started:
+          - GeoLens: examples/hello_geolens.md
+          - DefocusLens: examples/hello_defocuslens.md
+          - DiffractiveLens: examples/hello_diffraclens.md
+          - HybridLens: examples/hello_hybridlens.md
+      - Lens Design:
+          - GeoLens: examples/design_geolens.md
+          - DiffractiveLens: examples/design_diffraclens.md
+          - HybridLens: examples/design_hybridlens.md
+      - Advanced:
+          - Automated Lens Design: examples/autolens_rms.md
+          - PSF Network: examples/psf_net.md
+          - 4f System: examples/4f_system.md
+          - Pupil Field: examples/pupil_field.md
+          - Multi-order Diffraction: examples/multi_order.md
+          - Diffractive Surfaces: examples/diffractive_surfaces.md
+  - Contributing: contributing.md
