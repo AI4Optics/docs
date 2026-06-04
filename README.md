@@ -11,8 +11,13 @@ to GitHub Pages at <https://ai4optics.github.io/AI4Optics-docs/>.
 ## Deployment
 
 Every push to `main` triggers `.github/workflows/deploy.yml`, which installs the
-docs toolchain plus `deeplens-core` (so `mkdocstrings` can render the API
-reference) and runs `mkdocs gh-deploy`.
+docs toolchain plus the vendored DeepLens source in `_deeplens_src/` (so
+`mkdocstrings` can import `deeplens` and render the API reference) and runs
+`mkdocs gh-deploy`.
+
+The `_deeplens_src/` directory is a snapshot of the DeepLens source the docs were
+written against — see `_deeplens_src/SOURCE_COMMIT.txt` for the exact commit.
+Refresh it when the documented API changes.
 
 After the first successful run, enable GitHub Pages in the repo settings with
 **Source: Deploy from a branch → `gh-pages` / `(root)`**.
@@ -23,8 +28,8 @@ Requires Python ≥ 3.12 (needed by `deeplens-core`).
 
 ```bash
 pip install -r docs/requirements.txt
-pip install deeplens-core   # required for the API reference pages
-mkdocs serve                # live preview at http://127.0.0.1:8000/
+pip install ./_deeplens_src   # required for the API reference pages
+mkdocs serve                  # live preview at http://127.0.0.1:8000/
 ```
 
 Content lives in `docs/`; navigation and theme are configured in `mkdocs.yml`.

@@ -32,8 +32,9 @@ jobs:
           python -m pip install --upgrade pip
           # mkdocs + plugins for the docs build
           pip install -r docs/requirements.txt
-          # deeplens package itself: mkdocstrings imports it to render the API reference
-          pip install deeplens-core
+          # vendored DeepLens source: mkdocstrings imports `deeplens` to render
+          # the API reference (see _deeplens_src/SOURCE_COMMIT.txt for provenance)
+          pip install ./_deeplens_src
 
       - name: Build and deploy to gh-pages
         run: mkdocs gh-deploy --force --no-history

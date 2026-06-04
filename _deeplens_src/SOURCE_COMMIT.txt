@@ -1,0 +1,9 @@
+Vendored DeepLens source for building the API reference (mkdocstrings).
+
+Origin repo : https://github.com/singer-yang/DeepLens
+Branch      : claude/serene-kowalevski-74e8a9
+Commit      : 6d3073bffd57c728ac6ae6ae36a18d0a902c4443
+
+This snapshot exists only to let `mkdocstrings` import `deeplens` when the
+docs site is built. It is installed in CI via `pip install ./_deeplens_src`.
+Refresh it from the matching DeepLens source when the API changes.
