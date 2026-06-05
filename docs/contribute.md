@@ -12,43 +12,7 @@ and **how** to do it.
 
 ## Ways to contribute
 
-<div class="grid cards" markdown>
-
--   :material-bug:{ .lg .middle } __Report a bug__
-
-    ---
-
-    Something broken or behaving unexpectedly? Open an issue with a minimal
-    reproducible example.
-
-    [:octicons-arrow-right-24: Report a bug](#report-a-bug)
-
--   :material-lightbulb-on:{ .lg .middle } __Suggest a feature__
-
-    ---
-
-    Have an idea for a new capability, lens model, or workflow? Propose it before
-    you build it.
-
-    [:octicons-arrow-right-24: Suggest a feature](#suggest-a-feature)
-
--   :material-book-open-variant:{ .lg .middle } __Improve the docs__
-
-    ---
-
-    Fix unclear wording, add an example, or sharpen an API docstring.
-
-    [:octicons-arrow-right-24: Improve documentation](#improve-documentation)
-
--   :material-code-braces:{ .lg .middle } __Contribute code__
-
-    ---
-
-    Fix a bug, add a feature, or build a new optical component.
-
-    [:octicons-arrow-right-24: Contribute code](#contribute-code)
-
-</div>
+There are many ways to help — most of them don't require writing code.
 
 ### Report a bug
 
@@ -66,6 +30,8 @@ A good bug report saves everyone time. Before opening one:
 3. **Keep each issue focused.** File separate issues for unrelated problems and
    link them rather than combining them into one.
 
+---
+
 ### Suggest a feature
 
 New capabilities are welcome, but a quick discussion first avoids wasted effort:
@@ -77,6 +43,8 @@ New capabilities are welcome, but a quick discussion first avoids wasted effort:
 3. For anything substantial, **align with the maintainers before implementing.**
    This keeps your contribution consistent with the project's direction and far
    more likely to be merged.
+
+---
 
 ### Improve documentation
 
@@ -91,6 +59,8 @@ Documentation lives in two places, depending on what you want to change:
 Small fixes (typos, broken links, clearer phrasing) are perfect first
 contributions. See [Building the documentation](#building-the-documentation) to
 preview your changes locally.
+
+---
 
 ### Contribute code
 
