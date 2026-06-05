@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -32,8 +34,8 @@ jobs:
           python -m pip install --upgrade pip
           # mkdocs + plugins for the docs build
           pip install -r docs/requirements.txt
-          # vendored DeepLens source: mkdocstrings imports `deeplens` to render
-          # the API reference (see _deeplens_src/SOURCE_COMMIT.txt for provenance)
+          # DeepLens source (git submodule, pinned commit): mkdocstrings imports
+          # `deeplens` to render the API reference
           pip install ./_deeplens_src
 
       - name: Build and deploy to gh-pages
