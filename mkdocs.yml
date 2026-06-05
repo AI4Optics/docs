@@ -132,9 +132,7 @@ nav:
       - Examples:
           - Overview: end2endimaging/examples/index.md
           - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
-          - Automated Lens Design: end2endimaging/examples/autolens.md
-          - PSF Surrogate Network: end2endimaging/examples/psf_net.md
           - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
-          - Hybrid Lens Design: end2endimaging/examples/hybrid_lens.md
           - Computational Photography: end2endimaging/examples/comp_photography.md
+          - Defocus Deblur: end2endimaging/examples/defocus_deblur.md
   - Contribute: contribute.md
