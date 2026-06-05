@@ -4,3 +4,6 @@
 [submodule "end2endimaging-src"]
 	path = end2endimaging-src
 	url = https://github.com/vccimaging/End2endImaging.git
+[submodule "difftmm-src"]
+	path = difftmm-src
+	url = https://github.com/AI4Optics/DiffTMM.git

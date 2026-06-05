@@ -34,8 +34,18 @@ full camera-in-the-loop image formation. Pick a project below to get started.
 
     [:octicons-arrow-right-24: Open the End2endImaging docs](end2endimaging/index.md)
 
+-   :material-layers-triple:{ .lg .middle } __DiffTMM__
+
+    ---
+
+    Differentiable transfer matrix method in PyTorch for multi-layer thin-film
+    optics — isotropic and anisotropic solvers, GPU batching, and gradient-based
+    inverse design of optical coatings.
+
+    [:octicons-arrow-right-24: Open the DiffTMM docs](difftmm/index.md)
+
 </div>
 
 !!! note "More projects coming"
-    Additional AI4Optics projects (e.g. DiffTMM) will appear here as their
-    documentation lands. Each gets its own tab in the top navigation.
+    Additional AI4Optics projects will appear here as their documentation lands.
+    Each gets its own tab in the top navigation.

@@ -27,6 +27,10 @@
   {% set _repo_url = "https://github.com/vccimaging/End2endImaging" %}
   {% set _repo_name = "vccimaging/End2endImaging" %}
   {% set _facts = config.extra.repo_facts.end2end %}
+{% elif page and page.url.startswith("difftmm/") %}
+  {% set _repo_url = "https://github.com/AI4Optics/DiffTMM" %}
+  {% set _repo_name = "AI4Optics/DiffTMM" %}
+  {% set _facts = config.extra.repo_facts.difftmm %}
 {% endif %}
 <a href="{{ _repo_url }}" title="{{ lang.t('source') }}" class="md-source">
   <div class="md-source__icon md-icon">

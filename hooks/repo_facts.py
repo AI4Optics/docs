@@ -29,6 +29,7 @@ logger = logging.getLogger("mkdocs.hooks.repo_facts")
 REPOS: Dict[str, str] = {
     "deeplens": "vccimaging/DeepLens",
     "end2end": "vccimaging/End2endImaging",
+    "difftmm": "AI4Optics/DiffTMM",
 }
 
 _CACHE_FILE = Path(".cache/repo_facts.json")

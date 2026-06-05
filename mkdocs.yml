@@ -44,7 +44,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [deeplens-src, end2endimaging-src]
+          paths: [deeplens-src, end2endimaging-src, difftmm-src]
           options:
             allow_inspection: false
             docstring_style: google
@@ -135,4 +135,19 @@ nav:
           - Defocus Deblur: end2endimaging/examples/defocus_deblur.md
           - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
           - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
+  - DiffTMM:
+      - Overview: difftmm/index.md
+      - API Reference:
+          - Overview: difftmm/api/index.md
+          - Isotropic Solver: difftmm/api/isotropic.md
+          - Anisotropic Solver: difftmm/api/anisotropic.md
+          - Incoherent Solver: difftmm/api/incoherent.md
+          - Materials: difftmm/api/material.md
+      - Examples:
+          - Overview: difftmm/examples/index.md
+          - Benchmarks: difftmm/examples/benchmarks.md
+          - Forward Simulation: difftmm/examples/forward_simulation.md
+          - Inverse Design: difftmm/examples/inverse_design.md
+          - Real Materials: difftmm/examples/real_materials.md
+          - Incoherent Films: difftmm/examples/incoherent_films.md
   - Contribute: contribute.md
