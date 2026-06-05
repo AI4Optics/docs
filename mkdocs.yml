@@ -1,9 +1,7 @@
-site_name: DeepLens
-site_description: "Differentiable optical lens simulator for end-to-end camera system design with PyTorch"
+site_name: AI4Optics
+site_description: "Differentiable optics for end-to-end imaging system design — documentation for the AI4Optics family of projects (DeepLens and more)."
 site_author: "Xinge Yang"
 site_url: https://ai4optics.github.io/AI4Optics-docs/
-repo_url: https://github.com/singer-yang/DeepLens
-repo_name: singer-yang/DeepLens
 
 docs_dir: docs
 
@@ -23,7 +21,8 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.expand
+    - navigation.tabs
+    - navigation.sections
     - navigation.top
     - toc.follow
     - search.highlight
@@ -70,39 +69,41 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
-  - Overview: index.md
-  - Get Started:
-      - Setup: setup.md
-      - Quickstart: quickstart.md
-      - Architecture: architecture.md
-      - Installation: installation.md
-  - API Reference:
-      - Overview: api/index.md
-      - Lens Models:
-          - Lens: api/lens.md
-          - GeoLens: api/geolens.md
-          - HybridLens: api/hybridlens.md
-          - DiffractiveLens: api/diffraclens.md
-          - DefocusLens: api/defocuslens.md
-          - PSFNetLens: api/psfnetlens.md
-      - Optics Core: api/core.md
-      - Surrogate Networks: api/network.md
-  - Examples:
-      - Overview: examples/index.md
-      - Getting Started:
-          - GeoLens: examples/hello_geolens.md
-          - DefocusLens: examples/hello_defocuslens.md
-          - DiffractiveLens: examples/hello_diffraclens.md
-          - HybridLens: examples/hello_hybridlens.md
-      - Lens Design:
-          - GeoLens: examples/design_geolens.md
-          - DiffractiveLens: examples/design_diffraclens.md
-          - HybridLens: examples/design_hybridlens.md
-      - Advanced:
-          - Automated Lens Design: examples/autolens_rms.md
-          - PSF Network: examples/psf_net.md
-          - 4f System: examples/4f_system.md
-          - Pupil Field: examples/pupil_field.md
-          - Multi-order Diffraction: examples/multi_order.md
-          - Diffractive Surfaces: examples/diffractive_surfaces.md
-  - Contributing: contributing.md
+  - Home: index.md
+  - DeepLens:
+      - Overview: deeplens/index.md
+      - Get Started:
+          - Setup: deeplens/setup.md
+          - Quickstart: deeplens/quickstart.md
+          - Architecture: deeplens/architecture.md
+          - Installation: deeplens/installation.md
+      - API Reference:
+          - Overview: deeplens/api/index.md
+          - Lens Models:
+              - Lens: deeplens/api/lens.md
+              - GeoLens: deeplens/api/geolens.md
+              - HybridLens: deeplens/api/hybridlens.md
+              - DiffractiveLens: deeplens/api/diffraclens.md
+              - DefocusLens: deeplens/api/defocuslens.md
+              - PSFNetLens: deeplens/api/psfnetlens.md
+          - Optics Core: deeplens/api/core.md
+          - Surrogate Networks: deeplens/api/network.md
+      - Examples:
+          - Overview: deeplens/examples/index.md
+          - Getting Started:
+              - GeoLens: deeplens/examples/hello_geolens.md
+              - DefocusLens: deeplens/examples/hello_defocuslens.md
+              - DiffractiveLens: deeplens/examples/hello_diffraclens.md
+              - HybridLens: deeplens/examples/hello_hybridlens.md
+          - Lens Design:
+              - GeoLens: deeplens/examples/design_geolens.md
+              - DiffractiveLens: deeplens/examples/design_diffraclens.md
+              - HybridLens: deeplens/examples/design_hybridlens.md
+          - Advanced:
+              - Automated Lens Design: deeplens/examples/autolens_rms.md
+              - PSF Network: deeplens/examples/psf_net.md
+              - 4f System: deeplens/examples/4f_system.md
+              - Pupil Field: deeplens/examples/pupil_field.md
+              - Multi-order Diffraction: deeplens/examples/multi_order.md
+              - Diffractive Surfaces: deeplens/examples/diffractive_surfaces.md
+      - Contributing: deeplens/contributing.md

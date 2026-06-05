@@ -21,7 +21,7 @@ published to GitHub Pages at <https://ai4optics.github.io/AI4Optics-docs/> via a
 `mkdocs gh-deploy` GitHub Action on every push to `main`.
 
 The only thing coupled to DeepLens source is the **API Reference**: ~50 autodoc
-blocks like `::: deeplens.GeoLens` in `docs/api/*.md`. They are rendered by
+blocks like `::: deeplens.GeoLens` in `docs/deeplens/api/*.md`. They are rendered by
 **mkdocstrings → griffe**, which **statically parses** the DeepLens `.py` files —
 it does *not* import them. That is why CI needs no torch and why the source is a
 plain git submodule rather than a pip install.
@@ -69,13 +69,13 @@ make `::: deeplens.X` blocks silently fail. Run the bundled checker (static, no
 deps), which mirrors how griffe resolves symbols:
 
 ```bash
-python .claude/skills/docs-sync/scripts/check_api_symbols.py docs/api deeplens-src
+python .claude/skills/docs-sync/scripts/check_api_symbols.py docs/deeplens/api deeplens-src
 ```
 
 - **Exit 0 / "All symbols resolve"** → good, continue.
 - **Unresolved symbols** → the printed report tells you which. For each, decide:
   the object was *renamed/moved* (update the `::: ...` path in the relevant
-  `docs/api/*.md`), or *removed* (drop that block and its nav entry in
+  `docs/deeplens/api/*.md`), or *removed* (drop that block and its nav entry in
   `mkdocs.yml`), or you pinned the wrong commit. Fix, then re-run until clean.
 
 ### 4. Check for docstring-markup regressions (the recurring gotcha)
@@ -101,7 +101,7 @@ it.
 ### 5. Optional: update prose / examples / nav
 
 Only if the user asked, or if step 3 surfaced added/removed models. New lens
-model or API surface → add a `docs/api/<model>.md` with the `::: deeplens.X`
+model or API surface → add a `docs/deeplens/api/<model>.md` with the `::: deeplens.X`
 block and a nav entry in `mkdocs.yml`; mirror the existing pages' style. Removed
 model → delete the page and nav entry.
 
@@ -129,9 +129,9 @@ Then hit the live site (Pages takes ~30–60s after the run):
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" https://ai4optics.github.io/AI4Optics-docs/
-curl -s -o /dev/null -w "%{http_code}\n" https://ai4optics.github.io/AI4Optics-docs/api/geolens/
+curl -s -o /dev/null -w "%{http_code}\n" https://ai4optics.github.io/AI4Optics-docs/deeplens/api/geolens/
 # confirm no raw Sphinx markup leaked into a rendered API page:
-curl -s https://ai4optics.github.io/AI4Optics-docs/api/geolens/ | grep -cE ':class:`~deeplens|:meth:`'   # expect 0
+curl -s https://ai4optics.github.io/AI4Optics-docs/deeplens/api/geolens/ | grep -cE ':class:`~deeplens|:meth:`'   # expect 0
 ```
 
 Report the version delta (old SHA → new SHA), any `::: ...` references you had to

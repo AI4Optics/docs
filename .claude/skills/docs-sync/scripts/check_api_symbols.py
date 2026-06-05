@@ -16,8 +16,8 @@ Usage:
     python check_api_symbols.py [DOCS_API_DIR] [SOURCE_ROOT]
 
 Defaults assume you run it from the repo root:
-    DOCS_API_DIR = docs/api      (where the ::: blocks live)
-    SOURCE_ROOT  = deeplens-src  (the submodule that holds the deeplens/ package)
+    DOCS_API_DIR = docs/deeplens/api  (where the ::: blocks live)
+    SOURCE_ROOT  = deeplens-src       (the submodule that holds the deeplens/ package)
 
 Exit code 0 = every symbol resolves; 1 = one or more problems (printed).
 """
@@ -84,7 +84,7 @@ def resolve(dotted: str, source_root: str) -> tuple[str, str]:
 
 
 def main() -> int:
-    docs_api_dir = sys.argv[1] if len(sys.argv) > 1 else "docs/api"
+    docs_api_dir = sys.argv[1] if len(sys.argv) > 1 else "docs/deeplens/api"
     source_root = sys.argv[2] if len(sys.argv) > 2 else "deeplens-src"
 
     if not os.path.isdir(docs_api_dir):
