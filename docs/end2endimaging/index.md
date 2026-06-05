@@ -4,16 +4,19 @@
 
 **End-to-end differentiable simulation framework for computational imaging.**
 
-End2endImaging models the full imaging pipeline — optics, sensor, and image processing — as a differentiable computation graph built on PyTorch. This enables gradient-based optimization of camera systems from lens surfaces all the way through neural image reconstruction.
+End2endImaging models the full imaging pipeline — optics, sensor, and image processing — as a differentiable computation graph built on PyTorch. This enables gradient-based optimization of camera systems from lens surfaces all the way through neural image reconstruction. It targets two main applications:
+
+- **High-fidelity image simulation** — physically accurate rendering of camera captures for synthetic dataset generation and physical AI.
+- **End-to-end optics–algorithm co-design** — joint, gradient-based optimization of lens surfaces and reconstruction algorithms for computational imaging.
 
 ```
-Scene → [ DeepLens ] → [ Sensor ] → [ Network ] → Output Image
-              │              │             │
-           GeoLens       RGBSensor       UNet
-         HybridLens      MonoSensor     Restormer
-        DiffractiveLens                 NAFNet
-          DefocusLens
-         PSFNetLens
+Scene Image → [ DeepLens ] → Spectral Image → [ Sensor ] → Raw Image → [ Network ] → Output Image
+                │                               │                        │
+                GeoLens                         RGBSensor                UNet
+                HybridLens                      MonoSensor               Restormer
+                DiffractiveLens                                          NAFNet
+                ParaxialLens
+                PSFNetLens
 ```
 
 ---
@@ -52,32 +55,9 @@ conda env create -f environment.yml -n end2end_env
 
 ## Quickstart
 
-### Load a Lens
+### Simulate an Image
 
-`GeoLens` is the primary lens model — a differentiable multi-element refractive lens loaded from a JSON, Zemax `.zmx`, or Code V `.seq` file.
-
-```python
-from end2end_imaging import GeoLens
-
-lens = GeoLens(filename="datasets/lenses/cellphone/cellphone80deg.json")
-lens.analysis()
-```
-
-### Compute a PSF
-
-The point spread function (PSF) describes how the lens images a point source at a given field position and wavelength.
-
-```python
-# Single on-axis PSF (monochromatic)
-psf = lens.psf(points=[0.0, 0.0, -10000.0], ks=128, wvln=0.589)
-
-# RGB PSF (weighted sum over visible wavelengths)
-psf_rgb = lens.psf_rgb(points=[0.0, 0.0, -10000.0], ks=128)
-```
-
-### Render an Image
-
-Use the `Camera` class to simulate a physically accurate image capture — including lens aberrations, sensor noise, and ISP processing:
+First, create a `Camera` — which couples a lens and a sensor into a single differentiable capture model:
 
 ```python
 from end2end_imaging import Camera
@@ -86,7 +66,11 @@ camera = Camera(
     lens_file="datasets/lenses/camera/rf50mm_f1.8.json",
     sensor_file="datasets/sensors/canon_r6.json",
 )
+```
 
+Then render a physically accurate capture from an input image, including lens aberrations, sensor noise, and ISP processing:
+
+```python
 # Prepare input data
 data_dict = {
     "img": img_srgb,             # sRGB image, shape (B, 3, H, W), range [0, 1]

@@ -3,8 +3,10 @@ site_description: "Differentiable optics for end-to-end imaging system design â€
 site_author: "Xinge Yang"
 site_url: https://ai4optics.github.io/AI4Optics-docs/
 
-# Org-level link shown in the top-right of the header (the whole AI4Optics org).
-# Per-project source links live as buttons on each project's overview page.
+# Default top-right header link (umbrella home and any non-project page): the
+# AI4Optics org. On project pages this is overridden per-project by
+# overrides/partials/source.html â€” DeepLens pages link to the DeepLens repo,
+# End2endImaging pages to the End2endImaging repo.
 repo_url: https://github.com/AI4Optics
 repo_name: AI4Optics
 
@@ -12,8 +14,10 @@ docs_dir: docs
 
 theme:
   name: material
-  logo: assets/logo.png
+  custom_dir: overrides
   favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - scheme: default
       primary: indigo
@@ -28,6 +32,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.expand
     - navigation.top
     - toc.follow
     - search.highlight
@@ -115,6 +120,8 @@ nav:
   - End2endImaging:
       - Overview: end2endimaging/index.md
       - API Reference:
+          - Overview: end2endimaging/api/index.md
+          - Optics (DeepLens): end2endimaging/api/optics.md
           - Sensor: end2endimaging/api/sensor.md
           - Network: end2endimaging/api/network.md
           - Camera: end2endimaging/api/camera.md

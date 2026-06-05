@@ -1,0 +1,33 @@
+{#-
+  AI4Optics override of Material's repo source link.
+
+  The umbrella site hosts several projects, so the top-right header link should
+  point at the repository of whichever project you're currently reading:
+  DeepLens pages link to the DeepLens repo, End2endImaging pages to its repo,
+  and everything else (the umbrella home and any non-project page) falls back to
+  the AI4Optics org configured via `repo_url` in mkdocs.yml.
+
+  Branching is on `page.url` (e.g. "deeplens/", "deeplens/api/geolens/",
+  "end2endimaging/api/sensor/"), which mirrors the docs directory layout, so no
+  per-page front matter is needed. `lang` is imported with context by the
+  including header partial; `page` may be absent on synthetic pages, hence the
+  guard.
+-#}
+{% set _repo_url = config.repo_url %}
+{% set _repo_name = config.repo_name %}
+{% if page and page.url.startswith("deeplens/") %}
+  {% set _repo_url = "https://github.com/vccimaging/DeepLens" %}
+  {% set _repo_name = "vccimaging/DeepLens" %}
+{% elif page and page.url.startswith("end2endimaging/") %}
+  {% set _repo_url = "https://github.com/vccimaging/End2endImaging" %}
+  {% set _repo_name = "vccimaging/End2endImaging" %}
+{% endif %}
+<a href="{{ _repo_url }}" title="{{ lang.t('source') }}" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
+    {% include ".icons/" ~ icon ~ ".svg" %}
+  </div>
+  <div class="md-source__repository">
+    {{ _repo_name }}
+  </div>
+</a>

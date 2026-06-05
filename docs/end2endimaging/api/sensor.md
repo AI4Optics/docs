@@ -1,12 +1,10 @@
-# Sensor API Reference
+# Sensor
 
 The `end2end_imaging.sensor` module provides differentiable sensor models with noise simulation and a full image signal processing (ISP) pipeline.
 
----
-
 ## Sensor Models
 
-Base sensor class.
+Base sensor class shared by all sensor models.
 
 ::: end2end_imaging.sensor.Sensor
 
@@ -17,8 +15,6 @@ Full RGB sensor with Bayer pattern, noise model (read noise + shot noise), and I
 Monochrome sensor without color filter array.
 
 ::: end2end_imaging.sensor.MonoSensor
-
----
 
 ## ISP Modules
 

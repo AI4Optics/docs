@@ -54,6 +54,13 @@ body[data-md-color-scheme="slate"] {
   top: 3.2rem;
 }
 
+/* The umbrella is "AI4Optics", so the top-left logo image is dropped — with no
+   `theme.logo` set, Material would otherwise fall back to its default book icon.
+   Hide the logo button so only the AI4Optics wordmark remains in the header. */
+.md-header__button.md-logo {
+  display: none;
+}
+
 /* The Overview page already carries the DeepLens heading, so the redundant
    site-title at the top of the left navigation sidebar is hidden. Section
    titles (Get Started, API Reference, …) are nested deeper and are unaffected. */
@@ -135,15 +142,30 @@ html {
   font-weight: 600;
 }
 
-/* Divider line between top-level navigation sections.
-   Depends on Material's primary-nav DOM (.md-nav--primary > list > item). */
-.md-nav--primary > .md-nav__list > .md-nav__item {
+/* Divider line between a project's sections (Overview │ Get Started │ API
+   Reference │ Examples │ Contributing). With `navigation.tabs`, the project
+   tab is "lifted" and its sections render one level deeper than the tabs, so
+   the dividers must target the SECOND-level nav items — the children of a
+   project tab — not the top (tab) level, which is hidden on desktop. This
+   selector matches in both the desktop lifted sidebar and the mobile drawer. */
+.md-nav--primary
+  > .md-nav__list
+  > .md-nav__item
+  > .md-nav
+  > .md-nav__list
+  > .md-nav__item {
   border-top: 1px solid var(--md-default-fg-color--lightest);
-  margin-top: 0.55rem;
-  padding-top: 0.55rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
 }
 
-.md-nav--primary > .md-nav__list > .md-nav__item:first-child {
+/* No divider above the first section (Overview). */
+.md-nav--primary
+  > .md-nav__list
+  > .md-nav__item
+  > .md-nav
+  > .md-nav__list
+  > .md-nav__item:first-child {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
