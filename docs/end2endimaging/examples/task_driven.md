@@ -4,7 +4,7 @@ Design a lens from scratch using only a downstream task loss (image classificati
 
 **Script:** `4_tasklens_img_classi.py`
 
-**Reference:** Xinge Yang, Yunfeng Nie, Qiang Fu and Wolfgang Heidrich, "Image Quality Is Not All You Want: Task-Driven Lens Design for Image Classification," *arXiv* 2023.
+**Reference:** Xinge Yang, Qiang Fu, Yunfeng Nie, Wolfgang Heidrich, "Task-Driven Lens Design," *Optics Express* **34**(5), 8961–8975 (2026). [doi:10.1364/OE.588912](https://doi.org/10.1364/OE.588912)
 
 ## Overview
 
