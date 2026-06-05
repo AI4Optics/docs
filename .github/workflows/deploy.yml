@@ -36,7 +36,7 @@ jobs:
           pip install -r docs/requirements.txt
           # DeepLens source (git submodule, pinned commit): mkdocstrings imports
           # `deeplens` to render the API reference
-          pip install ./_deeplens_src
+          pip install ./deeplens-src
 
       - name: Build and deploy to gh-pages
         run: mkdocs gh-deploy --force --no-history
