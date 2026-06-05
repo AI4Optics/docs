@@ -131,8 +131,8 @@ nav:
           - Network: end2endimaging/api/network.md
       - Examples:
           - Overview: end2endimaging/examples/index.md
-          - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
-          - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
           - Computational Photography: end2endimaging/examples/comp_photography.md
           - Defocus Deblur: end2endimaging/examples/defocus_deblur.md
+          - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
+          - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
   - Contribute: contribute.md
