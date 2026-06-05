@@ -137,6 +137,9 @@ nav:
           - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
   - DiffTMM:
       - Overview: difftmm/index.md
+      - Get Started:
+          - Setup: difftmm/setup.md
+          - Architecture: difftmm/architecture.md
       - API Reference:
           - Overview: difftmm/api/index.md
           - Isotropic Solver: difftmm/api/isotropic.md

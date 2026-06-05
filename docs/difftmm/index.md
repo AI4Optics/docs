@@ -13,8 +13,6 @@ DiffTMM supports two main use cases:
 - **Inverse design** — optimize layer thicknesses (and stack geometry) end-to-end
   with PyTorch autograd to match measured or target optical properties.
 
----
-
 ## Why DiffTMM
 
 The transfer matrix method is the standard tool for multi-layer thin-film optics,
@@ -32,9 +30,7 @@ and autograd-friendly.
 
 Benchmarks are measured against the reference NumPy library
 [sbyrnes321/tmm](https://github.com/sbyrnes321/tmm), which DiffTMM also uses to
-validate accuracy (surface plasmon resonance, energy conservation, reciprocity).
-
----
+validate accuracy — see the [Benchmarks](examples/benchmarks.md) page.
 
 ## Solvers
 
@@ -51,38 +47,43 @@ Refractive indices can be plain numbers, complex values (with loss), or real
 [material names](api/material.md) (`"N-BK7"`, `"SiO2"`, `"Ag"`, …) resolved to
 wavelength-dependent dispersion from bundled catalogs.
 
----
+## Getting Started
 
-## Code Structure
+<div class="grid cards" markdown>
 
-```
-difftmm/
-├── __init__.py                     # Public API
-├── film_solver_isotropic.py        # IsotropicFilmSolver — 2×2 TMM (fast)
-├── film_solver_anisotropic.py      # FilmSolver — 4×4 TMM (anisotropic / general)
-├── film_solver_incoherent.py       # IncoherentIsotropicFilmSolver — thick substrates
-└── material/                       # Wavelength-dependent materials
-    ├── materials.py                #   Material class + list_materials()
-    └── catalogs/                   #   Bundled glass (AGF) + thin-film n+k tables
-```
+-   :material-download:{ .lg .middle } __Setup__
 
----
+    ---
 
-## Installation
+    Install DiffTMM and run your first thin-film simulation.
 
-**Prerequisites:** Python ≥ 3.9, PyTorch ≥ 2.0 (a CUDA-capable GPU is recommended
-but not required — DiffTMM runs on CPU too).
+    [:octicons-arrow-right-24: Set up DiffTMM](setup.md)
 
-```bash
-git clone https://github.com/AI4Optics/DiffTMM.git
-cd DiffTMM
-pip install torch numpy matplotlib scipy
-```
+-   :material-sitemap-outline:{ .lg .middle } __Architecture__
 
-The solvers require only `torch`; `numpy`, `matplotlib`, and `scipy` are used by
-the example notebooks and benchmarks.
+    ---
 
----
+    How the solvers, functional core, and materials fit together.
+
+    [:octicons-arrow-right-24: Understand the design](architecture.md)
+
+-   :material-api:{ .lg .middle } __API Reference__
+
+    ---
+
+    Full class and function documentation for the solvers and materials.
+
+    [:octicons-arrow-right-24: Browse the API](api/index.md)
+
+-   :material-flask-outline:{ .lg .middle } __Examples__
+
+    ---
+
+    Forward simulation, inverse design, real materials, and benchmarks.
+
+    [:octicons-arrow-right-24: See examples](examples/index.md)
+
+</div>
 
 ## Quickstart
 
@@ -142,14 +143,6 @@ for step in range(3000):
 See the [Inverse Design example](examples/inverse_design.md) for a complete,
 runnable walkthrough that recovers five layer thicknesses to sub-nanometer
 accuracy.
-
----
-
-## Next Steps
-
-- [API Reference](api/index.md) — solver and material class documentation
-- [Examples](examples/index.md) — forward simulation, inverse design, real materials, and thick substrates
-- [Contribute](../contribute.md) — development setup and guidelines
 
 ## Citation
 
