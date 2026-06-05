@@ -49,7 +49,7 @@ def _fetch_repo(full_name: str) -> Optional[Dict[str, str]]:
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "AI4Optics-docs",
+            "User-Agent": "AI4Optics-docs-site",
             "Accept": "application/vnd.github+json",
         },
     )

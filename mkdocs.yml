@@ -1,7 +1,7 @@
 site_name: AI4Optics
 site_description: "Differentiable optics for end-to-end imaging system design — documentation for the AI4Optics family of projects (DeepLens and more)."
 site_author: "Xinge Yang"
-site_url: https://ai4optics.github.io/AI4Optics-docs/
+site_url: https://ai4optics.github.io/docs/
 
 # Default top-right header link (umbrella home and any non-project page): the
 # AI4Optics org. On project pages this is overridden per-project by

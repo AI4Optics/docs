@@ -51,7 +51,7 @@ New capabilities are welcome, but a quick discussion first avoids wasted effort:
 Documentation lives in two places, depending on what you want to change:
 
 - **Narrative docs** (guides, overviews, examples, this page) live in the
-  [AI4Optics-docs](https://github.com/AI4Optics/AI4Optics-docs) repository.
+  [docs](https://github.com/AI4Optics/docs) repository.
 - **API reference** is generated directly from the **docstrings in the source
   repositories** (DeepLens and End2endImaging) — so a docstring fix is a code
   contribution to that project, not to the docs repo.
@@ -170,8 +170,8 @@ pulled from the source repositories, which are included as git submodules, so cl
 recursively:
 
 ```bash
-git clone --recursive https://github.com/AI4Optics/AI4Optics-docs.git
-cd AI4Optics-docs
+git clone --recursive https://github.com/AI4Optics/docs.git
+cd docs
 
 pip install -r docs/requirements.txt
 mkdocs serve   # preview at http://127.0.0.1:8000

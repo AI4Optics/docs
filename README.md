@@ -1,4 +1,4 @@
-# AI4Optics-docs
+# docs
 
 Documentation site for [DeepLens](https://github.com/singer-yang/DeepLens) — a
 differentiable optical lens simulator for end-to-end camera system design with
@@ -6,7 +6,7 @@ PyTorch.
 
 Built with [MkDocs](https://www.mkdocs.org/) +
 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) and published
-to GitHub Pages at <https://ai4optics.github.io/AI4Optics-docs/>.
+to GitHub Pages at <https://ai4optics.github.io/docs/>.
 
 ## Deployment
 

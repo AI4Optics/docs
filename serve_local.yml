@@ -1,5 +1,5 @@
 # Local preview config: serve at the root URL instead of the production
-# /AI4Optics-docs/ subpath. Usage:
+# /docs/ subpath. Usage:
 #     .venv/bin/mkdocs serve -f serve_local.yml
 INHERIT: mkdocs.yml
 site_url: http://127.0.0.1:8000/
