@@ -123,6 +123,10 @@ nav:
               - Diffractive Surfaces: deeplens/examples/diffractive_surfaces.md
   - End2endImaging:
       - Overview: end2endimaging/index.md
+      - Get Started:
+          - Setup: end2endimaging/setup.md
+          - Quickstart: end2endimaging/quickstart.md
+          - Architecture: end2endimaging/architecture.md
       - API Reference:
           - Overview: end2endimaging/api/index.md
           - Camera: end2endimaging/api/camera.md
@@ -139,6 +143,7 @@ nav:
       - Overview: difftmm/index.md
       - Get Started:
           - Setup: difftmm/setup.md
+          - Quickstart: difftmm/quickstart.md
           - Architecture: difftmm/architecture.md
       - API Reference:
           - Overview: difftmm/api/index.md
