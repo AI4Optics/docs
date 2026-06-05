@@ -16,6 +16,12 @@ Monochrome sensor without color filter array.
 
 ::: end2end_imaging.sensor.MonoSensor
 
+## ISP Pipeline
+
+The full, differentiable image signal processing pipeline that chains the modules below. `RGBSensor` uses it to turn raw sensor readings into an sRGB image, and it is invertible to reconstruct raw from sRGB.
+
+::: end2end_imaging.sensor.isp_modules.isp.InvertibleISP
+
 ## ISP Modules
 
 Individual image signal processing stages used inside `RGBSensor`. Each module is a `torch.nn.Module`.
