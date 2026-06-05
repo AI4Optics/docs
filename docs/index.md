@@ -6,11 +6,11 @@ hide:
 
 # AI4Optics
 
-**Differentiable optics for end-to-end imaging system design.**
+**Automate optical design with agentic AI and differentiable optimization.**
 
-AI4Optics is a family of open-source tools for modeling, simulating, and
-optimizing optical systems with PyTorch — from lens design to full
-camera-in-the-loop image formation. Pick a project below to get started.
+AI4Optics is a family of open-source tools that bring agentic AI and
+differentiable optimization to optical system design — from lens design to
+full camera-in-the-loop image formation. Pick a project below to get started.
 
 <div class="grid cards" markdown>
 
@@ -24,8 +24,18 @@ camera-in-the-loop image formation. Pick a project below to get started.
 
     [:octicons-arrow-right-24: Open the DeepLens docs](deeplens/index.md)
 
+-   :material-camera:{ .lg .middle } __End2endImaging__
+
+    ---
+
+    End-to-end differentiable imaging framework — optics, sensor, ISP, and
+    reconstruction networks as one optimizable graph for camera-in-the-loop
+    system design.
+
+    [:octicons-arrow-right-24: Open the End2endImaging docs](end2endimaging/index.md)
+
 </div>
 
 !!! note "More projects coming"
-    Additional AI4Optics projects (e.g. End2endImaging, DiffTMM) will appear here
-    as their documentation lands. Each gets its own tab in the top navigation.
+    Additional AI4Optics projects (e.g. DiffTMM) will appear here as their
+    documentation lands. Each gets its own tab in the top navigation.

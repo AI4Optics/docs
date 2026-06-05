@@ -3,6 +3,11 @@ site_description: "Differentiable optics for end-to-end imaging system design â€
 site_author: "Xinge Yang"
 site_url: https://ai4optics.github.io/AI4Optics-docs/
 
+# Org-level link shown in the top-right of the header (the whole AI4Optics org).
+# Per-project source links live as buttons on each project's overview page.
+repo_url: https://github.com/AI4Optics
+repo_name: AI4Optics
+
 docs_dir: docs
 
 theme:
@@ -34,7 +39,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [deeplens-src]
+          paths: [deeplens-src, end2endimaging-src]
           options:
             allow_inspection: false
             docstring_style: google
@@ -107,3 +112,18 @@ nav:
               - Multi-order Diffraction: deeplens/examples/multi_order.md
               - Diffractive Surfaces: deeplens/examples/diffractive_surfaces.md
       - Contributing: deeplens/contributing.md
+  - End2endImaging:
+      - Overview: end2endimaging/index.md
+      - API Reference:
+          - Sensor: end2endimaging/api/sensor.md
+          - Network: end2endimaging/api/network.md
+          - Camera: end2endimaging/api/camera.md
+      - Examples:
+          - Overview: end2endimaging/examples/index.md
+          - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
+          - Automated Lens Design: end2endimaging/examples/autolens.md
+          - PSF Surrogate Network: end2endimaging/examples/psf_net.md
+          - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
+          - Hybrid Lens Design: end2endimaging/examples/hybrid_lens.md
+          - Computational Photography: end2endimaging/examples/comp_photography.md
+      - Contributing: end2endimaging/contributing.md

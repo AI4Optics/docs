@@ -125,6 +125,16 @@ html {
   margin-top: 0.45em;
 }
 
+/* ---------------------------------------------------------------------
+   2c. Top navigation tabs (Home / DeepLens / … the project switcher).
+   Material's default is a small ~0.7rem; enlarge it so the project tabs
+   read as the primary navigation.
+   --------------------------------------------------------------------- */
+.md-tabs__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 /* Divider line between top-level navigation sections.
    Depends on Material's primary-nav DOM (.md-nav--primary > list > item). */
 .md-nav--primary > .md-nav__list > .md-nav__item {

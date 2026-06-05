@@ -1,3 +1,6 @@
 [submodule "deeplens-src"]
 	path = deeplens-src
 	url = https://github.com/vccimaging/DeepLens.git
+[submodule "end2endimaging-src"]
+	path = end2endimaging-src
+	url = https://github.com/vccimaging/End2endImaging.git
