@@ -1,33 +1,45 @@
 {#-
-  AI4Optics override of Material's repo source link.
+  AI4Optics override of Material's repo source link (top-right of the header).
 
-  The umbrella site hosts several projects, so the top-right header link should
-  point at the repository of whichever project you're currently reading:
-  DeepLens pages link to the DeepLens repo, End2endImaging pages to its repo,
-  and everything else (the umbrella home and any non-project page) falls back to
-  the AI4Optics org configured via `repo_url` in mkdocs.yml.
+  The umbrella site hosts several projects, so the link points at the repository
+  of whichever project you're currently reading: DeepLens pages link to the
+  DeepLens repo, End2endImaging pages to its repo, and everything else (the
+  umbrella home and any non-project page) falls back to the AI4Optics org from
+  `repo_url` in mkdocs.yml. Branching is on `page.url`, which mirrors the docs
+  directory layout, so no per-page front matter is needed.
 
-  Branching is on `page.url` (e.g. "deeplens/", "deeplens/api/geolens/",
-  "end2endimaging/api/sensor/"), which mirrors the docs directory layout, so no
-  per-page front matter is needed. `lang` is imported with context by the
-  including header partial; `page` may be absent on synthetic pages, hence the
-  guard.
+  Stars/forks ("facts") are rendered statically from `config.extra.repo_facts`
+  (populated at build time by hooks/repo_facts.py). We intentionally drop
+  Material's `data-md-component="source"` attribute so its client-side facts
+  script does not run — otherwise it would fetch (unreliably, with a single
+  global cache) and append a duplicate facts list. `lang` is imported with
+  context by the including header partial; `page` may be absent on synthetic
+  pages, hence the guard.
 -#}
 {% set _repo_url = config.repo_url %}
 {% set _repo_name = config.repo_name %}
+{% set _facts = none %}
 {% if page and page.url.startswith("deeplens/") %}
   {% set _repo_url = "https://github.com/vccimaging/DeepLens" %}
   {% set _repo_name = "vccimaging/DeepLens" %}
+  {% set _facts = config.extra.repo_facts.deeplens %}
 {% elif page and page.url.startswith("end2endimaging/") %}
   {% set _repo_url = "https://github.com/vccimaging/End2endImaging" %}
   {% set _repo_name = "vccimaging/End2endImaging" %}
+  {% set _facts = config.extra.repo_facts.end2end %}
 {% endif %}
-<a href="{{ _repo_url }}" title="{{ lang.t('source') }}" class="md-source" data-md-component="source">
+<a href="{{ _repo_url }}" title="{{ lang.t('source') }}" class="md-source">
   <div class="md-source__icon md-icon">
     {% set icon = config.theme.icon.repo or "fontawesome/brands/git-alt" %}
     {% include ".icons/" ~ icon ~ ".svg" %}
   </div>
-  <div class="md-source__repository">
+  <div class="md-source__repository{% if _facts %} md-source__repository--active{% endif %}">
     {{ _repo_name }}
+    {% if _facts %}
+    <ul class="md-source__facts">
+      <li class="md-source__fact md-source__fact--stars">{{ _facts.stars }}</li>
+      <li class="md-source__fact md-source__fact--forks">{{ _facts.forks }}</li>
+    </ul>
+    {% endif %}
   </div>
 </a>

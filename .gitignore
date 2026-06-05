@@ -15,3 +15,6 @@ dist/
 
 # Claude Code local workspace
 .claude/
+
+# Build-time repo-facts cache (hooks/repo_facts.py)
+.cache/

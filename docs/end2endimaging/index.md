@@ -1,13 +1,17 @@
 # End2endImaging
 
-[:material-github: End2endImaging on GitHub](https://github.com/vccimaging/End2endImaging){ .md-button }
+End2endImaging models the full imaging pipeline — optics, sensor, and image processing — as a differentiable computation graph built on PyTorch. This enables gradient-based optimization of camera systems from lens surfaces all the way through neural image reconstruction.
 
-**End-to-end differentiable simulation framework for computational imaging.**
-
-End2endImaging models the full imaging pipeline — optics, sensor, and image processing — as a differentiable computation graph built on PyTorch. This enables gradient-based optimization of camera systems from lens surfaces all the way through neural image reconstruction. It targets two main applications:
+End2end Imaging targets two main applications:
 
 - **High-fidelity image simulation** — physically accurate rendering of camera captures for synthetic dataset generation and physical AI.
-- **End-to-end optics–algorithm co-design** — joint, gradient-based optimization of lens surfaces and reconstruction algorithms for computational imaging.
+- **End-to-end optics–algorithm co-design** — joint optimization of lens surfaces and reconstruction algorithms for computational imaging.
+
+---
+
+## Architecture
+
+The imaging pipeline composes three differentiable stages — optics (DeepLens), sensor, and reconstruction network:
 
 ```
 Scene Image → [ DeepLens ] → Spectral Image → [ Sensor ] → Raw Image → [ Network ] → Output Image
@@ -17,6 +21,38 @@ Scene Image → [ DeepLens ] → Spectral Image → [ Sensor ] → Raw Image →
                 DiffractiveLens                                          NAFNet
                 ParaxialLens
                 PSFNetLens
+```
+
+### Code Structure
+
+```
+end2end_imaging/
+├── camera.py                    # Camera = Lens + Sensor pipeline
+├── utils.py                     # Image I/O, metrics, logging
+│
+├── deeplens/                    # Differentiable optics
+│   ├── geolens.py               #   GeoLens — refractive ray tracing
+│   ├── hybridlens.py            #   HybridLens — refractive + DOE
+│   ├── diffraclens.py           #   DiffractiveLens — wave optics
+│   ├── defocuslens.py           #   DefocusLens — defocus model
+│   ├── psfnetlens.py            #   PSFNetLens — neural PSF surrogate
+│   ├── geolens_pkg/             #   GeoLens evaluation, optimization, I/O, visualization
+│   ├── geometric_surface/       #   Refractive surfaces (spheric, aspheric, ...)
+│   ├── diffractive_surface/     #   Diffractive elements (wave optics simulation)
+│   ├── phase_surface/           #   Phase surfaces (ray optics simulation)
+│   ├── light/                   #   Ray and ComplexWave representations
+│   ├── material/                #   Glass & plastic catalogs (Sellmeier, AGF)
+│   └── imgsim/                  #   PSF convolution & Monte Carlo rendering
+│
+├── sensor/                      # Sensor simulation
+│   ├── rgb_sensor.py            #   RGBSensor (Bayer + noise + ISP)
+│   ├── mono_sensor.py           #   MonoSensor
+│   └── isp_modules/             #   ISP pipeline (demosaic, white balance, gamma, ...)
+│
+└── network/                     # Neural networks
+    ├── surrogate/               #   PSF surrogate networks (MLP, SIREN, ...)
+    ├── reconstruction/          #   Image reconstruction (UNet, Restormer, ...)
+    └── loss/                    #   Training losses (perceptual, PSNR, SSIM)
 ```
 
 ---
@@ -117,54 +153,8 @@ See `7_comp_photography.py` for a full training example.
 
 ---
 
-## Architecture
-
-### Lens Types
-
-| Lens Type | Description | Use Case |
-|-----------|-------------|----------|
-| `GeoLens` | Multi-element refractive ray tracing | Automated lens design, image simulation |
-| `HybridLens` | Refractive lens + diffractive optical element | Hybrid optics co-design |
-| `DiffractiveLens` | Pure wave-optics diffractive surfaces | Flat optics, DOE design |
-| `PSFNetLens` | Neural network PSF surrogate | Fast PSF approximation |
-| `DefocusLens` | Circle-of-confusion model | Simple bokeh simulation |
-
-### Code Structure
-
-```
-end2end_imaging/
-├── camera.py                    # Camera = Lens + Sensor pipeline
-├── utils.py                     # Image I/O, metrics, logging
-│
-├── deeplens/                    # Differentiable optics
-│   ├── geolens.py               #   GeoLens — refractive ray tracing
-│   ├── hybridlens.py            #   HybridLens — refractive + DOE
-│   ├── diffraclens.py           #   DiffractiveLens — wave optics
-│   ├── defocuslens.py           #   DefocusLens — defocus model
-│   ├── psfnetlens.py            #   PSFNetLens — neural PSF surrogate
-│   ├── geolens_pkg/             #   GeoLens evaluation, optimization, I/O, visualization
-│   ├── geometric_surface/       #   Refractive surfaces (spheric, aspheric, ...)
-│   ├── diffractive_surface/     #   Diffractive elements (wave optics simulation)
-│   ├── phase_surface/           #   Phase surfaces (ray optics simulation)
-│   ├── light/                   #   Ray and ComplexWave representations
-│   ├── material/                #   Glass & plastic catalogs (Sellmeier, AGF)
-│   └── imgsim/                  #   PSF convolution & Monte Carlo rendering
-│
-├── sensor/                      # Sensor simulation
-│   ├── rgb_sensor.py            #   RGBSensor (Bayer + noise + ISP)
-│   ├── mono_sensor.py           #   MonoSensor
-│   └── isp_modules/             #   ISP pipeline (demosaic, white balance, gamma, ...)
-│
-└── network/                     # Neural networks
-    ├── surrogate/               #   PSF surrogate networks (MLP, SIREN, ...)
-    ├── reconstruction/          #   Image reconstruction (UNet, Restormer, ...)
-    └── loss/                    #   Training losses (perceptual, PSNR, SSIM)
-```
-
----
-
 ## Next Steps
 
 - [API Reference](api/camera.md) — sensor, network, and camera class documentation
 - [Examples](examples/index.md) — lens design, end-to-end optimization, and more
-- [Contributing](contributing.md) — development setup and guidelines
+- [Contribute](../contribute.md) — development setup and guidelines

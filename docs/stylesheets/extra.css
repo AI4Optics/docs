@@ -142,6 +142,33 @@ html {
   font-weight: 600;
 }
 
+/* ---------------------------------------------------------------------
+   2d. Brand wordmark "AI4Optics" — larger, and left-aligned with the
+   "Home" tab directly beneath it. (Only the brand topic is enlarged; the
+   second, scroll-reveal page-title topic keeps its default size.)
+
+   Geometry: "Home" lives in the centered content grid (max-width 86rem) at a
+   0.8rem inset (0.2rem list + 0.6rem item). The brand lives in the full-width
+   header at 0.2rem padding + its own margin. Setting the title margin to
+   0.6rem puts the brand at 0.8rem too — aligned below the grid width, where
+   the grid gutter is ~0. Above the grid width, track the gutter so they stay
+   aligned (exact on macOS overlay scrollbars; within a few px elsewhere).
+   --------------------------------------------------------------------- */
+.md-header__topic:not([data-md-component]) {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.md-header__title {
+  margin-left: 0.6rem;
+}
+
+@media screen and (min-width: 86.25rem) {
+  .md-header__title {
+    margin-left: calc((100vw - 86rem) / 2 + 0.6rem);
+  }
+}
+
 /* Divider line between a project's sections (Overview │ Get Started │ API
    Reference │ Examples │ Contributing). With `navigation.tabs`, the project
    tab is "lifted" and its sections render one level deeper than the tabs, so

@@ -56,6 +56,11 @@ plugins:
             merge_init_into_class: true
             show_signature_annotations: true
 
+# Build-time hook: fetches each project's GitHub stars/forks and exposes them as
+# config.extra.repo_facts, rendered statically into the header by source.html.
+hooks:
+  - hooks/repo_facts.py
+
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -116,12 +121,11 @@ nav:
               - Pupil Field: deeplens/examples/pupil_field.md
               - Multi-order Diffraction: deeplens/examples/multi_order.md
               - Diffractive Surfaces: deeplens/examples/diffractive_surfaces.md
-      - Contributing: deeplens/contributing.md
   - End2endImaging:
       - Overview: end2endimaging/index.md
       - API Reference:
           - Overview: end2endimaging/api/index.md
-          - Optics (DeepLens): end2endimaging/api/optics.md
+          - DeepLens: end2endimaging/api/optics.md
           - Sensor: end2endimaging/api/sensor.md
           - Network: end2endimaging/api/network.md
           - Camera: end2endimaging/api/camera.md
@@ -133,4 +137,4 @@ nav:
           - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
           - Hybrid Lens Design: end2endimaging/examples/hybrid_lens.md
           - Computational Photography: end2endimaging/examples/comp_photography.md
-      - Contributing: end2endimaging/contributing.md
+  - Contribute: contribute.md

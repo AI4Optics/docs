@@ -1,7 +1,5 @@
 # DeepLens
 
-[:material-github: DeepLens on GitHub](https://github.com/singer-yang/DeepLens){ .md-button }
-
 DeepLens is a PyTorch-based differentiable optical lens simulator for end-to-end computational imaging, supporting multiple optical models — geometric ray tracing, diffractive wave propagation, hybrid ray-wave, and surrogate PSF networks. It can be used for end-to-end optics-algorithm co-design, gradient-based automated optical design, and synthetic dataset generation via image simulation, letting researchers rapidly prototype and optimize custom optical systems.
 
 DeepLens computes the point spread function (PSF) of an optical lens in a fully differentiable manner:
