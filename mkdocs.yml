@@ -15,6 +15,7 @@ docs_dir: docs
 theme:
   name: material
   custom_dir: overrides
+  language: en
   favicon: assets/logo.png
   icon:
     repo: fontawesome/brands/github
@@ -121,6 +122,7 @@ nav:
               - Pupil Field: deeplens/examples/pupil_field.md
               - Multi-order Diffraction: deeplens/examples/multi_order.md
               - Diffractive Surfaces: deeplens/examples/diffractive_surfaces.md
+      - Citation: deeplens/citation.md
   - End2endImaging:
       - Overview: end2endimaging/index.md
       - Get Started:
@@ -139,6 +141,7 @@ nav:
           - Defocus Deblur: end2endimaging/examples/defocus_deblur.md
           - End-to-End Lens Design: end2endimaging/examples/end2end_lens_design.md
           - Task-Driven Lens Design: end2endimaging/examples/task_driven.md
+      - Citation: end2endimaging/citation.md
   - DiffTMM:
       - Overview: difftmm/index.md
       - Get Started:
@@ -158,4 +161,5 @@ nav:
           - Inverse Design: difftmm/examples/inverse_design.md
           - Real Materials: difftmm/examples/real_materials.md
           - Incoherent Films: difftmm/examples/incoherent_films.md
+      - Citation: difftmm/citation.md
   - Contribute: contribute.md

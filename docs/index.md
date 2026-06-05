@@ -1,4 +1,5 @@
 ---
+description: AI4Optics is a family of open-source, PyTorch-based differentiable optics tools for optical design and computational imaging — DeepLens lens simulation, End2endImaging, and DiffTMM thin-film TMM.
 hide:
   - navigation
   - toc

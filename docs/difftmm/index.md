@@ -1,3 +1,7 @@
+---
+description: DiffTMM is a differentiable transfer matrix method (TMM) in PyTorch for multi-layer thin-film optics — GPU-batched forward simulation and gradient-based inverse design of optical coatings.
+---
+
 # DiffTMM
 
 DiffTMM is a differentiable [Transfer Matrix Method](https://en.wikipedia.org/wiki/Transfer-matrix_method_(optics))
@@ -12,6 +16,12 @@ DiffTMM supports two main use cases:
   of a film stack across angle and wavelength, on GPU and in batch.
 - **Inverse design** — optimize layer thicknesses (and stack geometry) end-to-end
   with PyTorch autograd to match measured or target optical properties.
+
+DiffTMM computes the Fresnel coefficients of a multi-layer thin-film stack in a fully differentiable manner:
+
+```
+Incident angle, wavelength → [ DiffTMM ] → Fresnel coefficients (ts, tp, rs, rp)
+```
 
 ## Why DiffTMM
 
@@ -46,6 +56,8 @@ interface:
 Refractive indices can be plain numbers, complex values (with loss), or real
 [material names](api/material.md) (`"N-BK7"`, `"SiO2"`, `"Ag"`, …) resolved to
 wavelength-dependent dispersion from bundled catalogs.
+
+See the [Citation](citation.md) page for how to cite DiffTMM.
 
 ## Getting Started
 
@@ -92,13 +104,3 @@ wavelength-dependent dispersion from bundled catalogs.
     [:octicons-arrow-right-24: See examples](examples/index.md)
 
 </div>
-
-## Citation
-
-If you use DiffTMM in your research, please cite the accompanying paper:
-
-> X. Yang, Z. Liu, Z. Nie, Q. Fan, Z. Shi, J. Bonar, and W. Heidrich,
-> "End-to-end differentiable design of geometric waveguide displays,"
-> *arXiv preprint* [arXiv:2601.04370](https://arxiv.org/abs/2601.04370) (2026).
-
-DiffTMM is released under the [Apache License 2.0](https://github.com/AI4Optics/DiffTMM/blob/main/LICENSE).

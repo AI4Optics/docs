@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{#-
+  SEO additions injected into <head> via Material's `extrahead` block:
+  per-page Open Graph + Twitter Card meta and a WebSite JSON-LD node.
+
+  Descriptions come from each page's front-matter `description:` when present,
+  otherwise the global `site_description`. Title, URL, and image are absolute
+  (built from `site_url`) so social scrapers and crawlers resolve them. The
+  JSON-LD values use the `tojson` filter, which emits HTML-safe JSON strings.
+-#}
+{% block extrahead %}
+  {% set _title = (page.title ~ " - " ~ config.site_name) if (page and page.title and not page.is_homepage) else config.site_name %}
+  {% set _desc = page.meta.description if (page and page.meta and page.meta.description) else config.site_description %}
+  {% set _url = page.canonical_url if (page and page.canonical_url) else config.site_url %}
+  {% set _image = config.site_url ~ "assets/logo.png" %}
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ _title }}">
+  <meta property="og:description" content="{{ _desc }}">
+  <meta property="og:url" content="{{ _url }}">
+  <meta property="og:image" content="{{ _image }}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ _title }}">
+  <meta name="twitter:description" content="{{ _desc }}">
+  <meta name="twitter:image" content="{{ _image }}">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": {{ config.site_name | tojson }},
+    "url": {{ config.site_url | tojson }},
+    "description": {{ config.site_description | tojson }}
+  }
+  </script>
+{% endblock %}

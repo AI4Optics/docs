@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai4optics.github.io/AI4Optics-docs/sitemap.xml

@@ -1,11 +1,21 @@
+---
+description: DeepLens is a PyTorch differentiable optical lens simulator — geometric ray tracing, diffractive wave optics, PSF computation, automated lens design, and end-to-end computational imaging.
+---
+
 # DeepLens
 
-DeepLens is a PyTorch-based differentiable optical lens simulator for end-to-end computational imaging, supporting multiple optical models — geometric ray tracing, diffractive wave propagation, hybrid ray-wave, and surrogate PSF networks. It can be used for end-to-end optics-algorithm co-design, gradient-based automated optical design, and synthetic dataset generation via image simulation, letting researchers rapidly prototype and optimize custom optical systems.
+DeepLens is a PyTorch-based differentiable optical lens simulator for end-to-end computational imaging, supporting multiple optical models — geometric ray tracing, diffractive wave propagation, hybrid ray-wave, and surrogate PSF networks.
+
+DeepLens supports three main use cases:
+
+- **Differentiable optics** — accurate and efficient gradient computation for optical parameters via differentiable simulation and backpropagation.
+- **Automated optical design** — fully automated optical design driven by gradient information and advanced optimization algorithms.
+- **Computational imaging** — physically accurate image simulation and end-to-end optimization with downstream image reconstruction algorithms.
 
 DeepLens computes the point spread function (PSF) of an optical lens in a fully differentiable manner:
 
 ```
-Point source → [ DeepLens ] → PSF
+Light source → [ DeepLens ] → PSF
 ```
 
 DeepLens also serves as the differentiable optics engine in an end-to-end computational imaging pipeline such as [End2endImaging](https://github.com/vccimaging/End2endImaging), where the optics, sensor, and a reconstruction network form a single differentiable graph that can be optimized jointly:
