@@ -13,6 +13,5 @@ dist/
 # OS
 .DS_Store
 
-# Claude Code local workspace (but keep project skills tracked)
-.claude/*
-!.claude/skills/
+# Claude Code local workspace
+.claude/
