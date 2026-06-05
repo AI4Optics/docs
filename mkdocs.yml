@@ -35,7 +35,9 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
+          paths: [deeplens-src]
           options:
+            allow_inspection: false
             docstring_style: google
             show_source: true
             show_root_heading: true
