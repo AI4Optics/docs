@@ -9,8 +9,8 @@ hide:
 
 **Automate optical design with agentic AI and differentiable optimization.**
 
-AI4Optics brings agentic AI and differentiable optimization to optical system
-design — from lens design to full camera-in-the-loop image formation.
+AI4Optics brings differentiable optics, computational imaging, and agentic AI
+to optical system design — from lens design to full camera-in-the-loop image formation.
 
 ## Simulators
 

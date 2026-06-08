@@ -162,4 +162,9 @@ nav:
           - Real Materials: difftmm/examples/real_materials.md
           - Incoherent Films: difftmm/examples/incoherent_films.md
       - Citation: difftmm/citation.md
-  - Contribute: contribute.md
+  - Contribute:
+      - Overview: contribute/index.md
+      - Development Setup: contribute/setup.md
+      - Pull Requests: contribute/pull-requests.md
+      - Building Documentation: contribute/documentation.md
+      - Code of Conduct: contribute/code-of-conduct.md
