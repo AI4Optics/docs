@@ -1,0 +1,9 @@
+# Local preview config (no API generation): serves docs without mkdocstrings.
+# Use when source packages aren't installed locally.
+# Usage:
+#     mkdocs serve -f serve_local_no_api.yml
+INHERIT: mkdocs.yml
+site_url: http://127.0.0.1:8000/
+
+plugins:
+  - search
