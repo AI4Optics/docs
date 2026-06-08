@@ -9,9 +9,12 @@ hide:
 
 **Automate optical design with agentic AI and differentiable optimization.**
 
-AI4Optics is a family of open-source tools that bring agentic AI and
-differentiable optimization to optical system design — from lens design to
-full camera-in-the-loop image formation. Pick a project below to get started.
+AI4Optics brings agentic AI and differentiable optimization to optical system
+design — from lens design to full camera-in-the-loop image formation.
+
+## Simulators
+
+AI-native optical simulators that AI agents can drive reliably with full code access.
 
 <div class="grid cards" markdown>
 
@@ -47,6 +50,25 @@ full camera-in-the-loop image formation. Pick a project below to get started.
 
 </div>
 
-!!! note "More projects coming"
-    Additional AI4Optics projects will appear here as their documentation lands.
-    Each gets its own tab in the top navigation.
+## Applications
+
+End-to-end imaging applications built on top of our simulators.
+
+<div class="grid cards single-col" markdown>
+
+-   :material-palette-swatch:{ .lg .middle } __DeepLens Hyperspectral__
+
+    ---
+
+    End-to-end hyperspectral imaging with DeepLens — joint design of
+    dispersive optics and reconstruction networks for snapshot
+    hyperspectral cameras.
+
+    [:octicons-arrow-right-24: View on GitHub](https://github.com/AI4Optics/DeepLens_Hyperspectral)
+
+</div>
+
+## Softwares
+
+!!! note "Coming soon"
+    Software tools will appear here as they are released.

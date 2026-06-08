@@ -340,6 +340,12 @@ body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
   color: var(--md-accent-fg-color);
 }
 
+/* Single-column card grid — constrains a grid to one card at exactly the
+   width of one column in the 3-card simulator grid (⅓ of content minus 2 gaps). */
+.md-typeset .grid.cards.single-col {
+  grid-template-columns: calc((100% - 2 * 0.9rem) / 3);
+}
+
 /* ---------------------------------------------------------------------
    8. Code — match the smaller scale.
    --------------------------------------------------------------------- */
