@@ -4,15 +4,18 @@ description: The three diffractive encoders in DeepLens Hyperspectral Imaging �
 
 # Diffractive Surfaces
 
-**Script:** `2_hsi_diffractive_surfaces.py`
+**Script:** `0_hello_deeplens_hsi.py`
 
-The DOE is the optical encoder: its wavelength-dependent PSF is what carries spectral information into the RGB capture. DeepLens Hyperspectral Imaging ships three `DiffractiveSurface` parameterizations, each interchangeable through the lens-config JSON. This example renders each DOE's phase map and its PSF at 400, 500, 600 and 700 nm (point source at 1 m).
+The DOE is the optical encoder: its wavelength-dependent PSF is what carries spectral information into the RGB capture. DeepLens Hyperspectral Imaging ships three `DiffractiveSurface` parameterizations, each interchangeable through the lens-config JSON. This example renders each DOE's phase map and its PSF at 400, 500, 600 and 700 nm (point source at 1 m). The PSF changing shape with wavelength is the spectral cue the reconstruction network learns to decode.
 
 ## Run
 
 ```bash
-# Renders the DiffractedRotation and RotationallySymmetric encoders
-python 2_hsi_diffractive_surfaces.py
+# Render the DOE phase map + spectral PSF for every encoder
+python 0_hello_deeplens_hsi.py
+
+# ...or just one encoder
+python 0_hello_deeplens_hsi.py pixel2d
 ```
 
 ## Key code
@@ -20,10 +23,14 @@ python 2_hsi_diffractive_surfaces.py
 ```python
 from src.hsi_camera import HSICamera
 
-for lens_file, tag in [
-    ("./lenses/paraxiallens/doelens_diffracted_rotation.json",  "diffracted_rotation"),
-    ("./lenses/paraxiallens/doelens_rotational_symmetric.json", "rotational_symmetric"),
-]:
+# DOE name -> lens file to visualize
+DOES = {
+    "pixel2d":              "./lenses/paraxiallens/doelens_hsi.json",
+    "diffracted_rotation":  "./lenses/paraxiallens/doelens_diffracted_rotation.json",
+    "rotational_symmetric": "./lenses/paraxiallens/doelens_rotational_symmetric.json",
+}
+
+for name, lens_file in DOES.items():
     cam = HSICamera(lens_file=lens_file, sensor_file="./sensors/flir/BFS-U3-200S7C-C.json")
     cam.vis_doe()                                                  # phase map (2D + 3D)
     cam.vis_psf(wvln_spectral=[0.4, 0.5, 0.6, 0.7], psf_ks=512, depth=-1000)
@@ -39,7 +46,7 @@ A free per-pixel height map (`doelens_hsi.json`). Every pixel is an independent 
 
 ## DiffractedRotation (Jeon et al. 2019)
 
-An analytic DOE built from blazed Fresnel sectors (here three, `num_wings: 3`). Its PSF is a sharp lobe that **rotates** to a different angle at each wavelength — an elegant, well-conditioned spectral code. It is fixed-form (its only continuous parameter is the focal length), so it is used as a *fixed* encoder, not an end-to-end design target.
+An analytic DOE built from blazed Fresnel sectors (here three, `num_wings: 3`). Its PSF is a sharp lobe that **rotates** to a different angle at each wavelength, giving a well-conditioned spectral code. It is fixed-form (its only continuous parameter is the focal length), so it is used as a *fixed* encoder, not an end-to-end design target.
 
 | Phase | Spectral PSF (400–700 nm) |
 |---|---|

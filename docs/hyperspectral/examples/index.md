@@ -4,7 +4,7 @@ description: DeepLens Hyperspectral Imaging examples — build an HSI camera, vi
 
 # Examples
 
-These examples walk from a first hyperspectral camera to full end-to-end design. Each corresponds to a script in the [repository](https://github.com/AI4Optics/DeepLens_Hyperspectral).
+These examples walk from a first hyperspectral camera to full end-to-end design. Each corresponds to a script in the [repository root](https://github.com/AI4Optics/DeepLens_Hyperspectral).
 
 ## Build & visualize
 
@@ -12,7 +12,7 @@ Set up the differentiable HSI camera and inspect how each DOE encodes the spectr
 
 | Example | Script | Description |
 |---|---|---|
-| [Diffractive Surfaces](diffractive_surfaces.md) | `2_hsi_diffractive_surfaces.py` | The three DOE encoders — phase maps and wavelength-dependent PSFs |
+| [Diffractive Surfaces](diffractive_surfaces.md) | `0_hello_deeplens_hsi.py` | The three DOE encoders — phase maps and wavelength-dependent PSFs |
 
 ## Train & design
 

@@ -6,7 +6,7 @@ description: Jointly optimize a diffractive optical element together with the NA
 
 **Script:** `2_end2end_hsi.py`
 
-Design the optics and the algorithm *together*. The DOE's learnable parameters join the optimizer alongside the network, so gradients from the reconstruction loss reshape the DOE — the optics learn to encode exactly what the reconstructor can best invert.
+Design the optics and the algorithm *together*. The DOE's learnable parameters join the optimizer alongside the network, so gradients from the reconstruction loss reshape the DOE — the optics adapt toward a code the network can reconstruct more accurately.
 
 ## Run
 

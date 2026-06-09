@@ -435,7 +435,13 @@ body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
 }
 
 .md-tabs__item--dropdown:hover .md-tabs__menu,
-.md-tabs__item--dropdown:focus-within .md-tabs__menu {
+.md-tabs__item--dropdown:focus-within .md-tabs__menu,
+/* Reveal when the trigger link itself is focused (the menu <ul> is its adjacent
+   sibling). Without this, the menu stays visibility:hidden and its links never
+   enter the tab order, so :focus-within could never fire — a keyboard dead-end.
+   Tabbing onto the trigger now opens the menu, and :focus-within keeps it open
+   as focus moves through the items. */
+.md-tabs__item--dropdown .md-tabs__link:focus + .md-tabs__menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -472,6 +478,14 @@ body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
    section whose first child is itself a section. The project tabs (DeepLens,
    DiffTMM, End2endImaging) keep their sidebars unchanged, and the mobile
    drawer keeps the full hierarchy for context.
+
+   INVARIANT: this relies on every other top-level tab (DeepLens, DiffTMM,
+   End2endImaging, Contribute) having a leaf "Overview" as its FIRST nav child.
+   If a future project's first child becomes a section — or a second
+   Applications-style group is added that SHOULD keep its header — this rule
+   will also hide that header. In that case narrow the match (e.g. emit a
+   per-group marker in overrides/partials/tabs-item.html and key the CSS off
+   it) rather than relying on nav ordering.
    --------------------------------------------------------------------- */
 @media screen and (min-width: 76.25em) {
   .md-nav--primary
