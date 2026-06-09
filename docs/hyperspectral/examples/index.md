@@ -12,7 +12,6 @@ Set up the differentiable HSI camera and inspect how each DOE encodes the spectr
 
 | Example | Script | Description |
 |---|---|---|
-| [Hello DeepLens HSI](hello_hsi.md) | `0_hello_deeplens_hsi.py` | Build an `HSICamera` and render its DOE phase map and spectral PSF |
 | [Diffractive Surfaces](diffractive_surfaces.md) | `2_hsi_diffractive_surfaces.py` | The three DOE encoders — phase maps and wavelength-dependent PSFs |
 
 ## Train & design

@@ -31,7 +31,7 @@ for lens_file, tag in [
 
 ## Pixel2D — freeform
 
-A free per-pixel height map (`doelens_hsi.json`). Every pixel is an independent learnable height, giving the most expressive — but highest-dimensional — encoder. This is the DOE built in [Hello DeepLens HSI](hello_hsi.md).
+A free per-pixel height map (`doelens_hsi.json`). Every pixel is an independent learnable height, giving the most expressive — but highest-dimensional — encoder. It is the default encoder used in the [HSI Reconstruction](hsi_reconstruction.md) example.
 
 | Phase | Spectral PSF (400–700 nm) |
 |---|---|

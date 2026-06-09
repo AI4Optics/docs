@@ -14,12 +14,6 @@ Spectral cube  ──▶  [ DOE optics ]  ──▶  RGB capture  ──▶  [ N
  400–700 nm          wavelength-dependent PSF                network
 ```
 
-## Why snapshot HSI
-
-Conventional hyperspectral cameras *scan* — across space or wavelength — trading capture time for spectral resolution and struggling with dynamic scenes. **Snapshot** HSI instead captures every band in a single exposure by *optically encoding* the spectrum into a 2D measurement. The core idea here: design a DOE whose point-spread function (PSF) changes strongly with wavelength, so each spectral band leaves a distinct, recoverable signature in the RGB capture.
-
-That optical encoder fundamentally limits reconstruction — a poorly-conditioned PSF cannot be undone by any network. DeepLens HSI lets you both *evaluate* fixed encoders and *design* better ones.
-
 ## Two workflows
 
 <div class="grid cards" markdown>
@@ -53,32 +47,36 @@ That optical encoder fundamentally limits reconstruction — a poorly-conditione
 - **Hyperspectral camera model** — `HSICamera` renders a spectral cube into an RGB capture through the DOE and a real sensor's measured response curves (FLIR BFS-U3-200S7C-C).
 - **Neural reconstruction** — a `NAFNet` maps the 3-channel capture back to a 31-band spectral cube, trained on the [CAVE](https://www.cs.columbia.edu/CAVE/databases/multispectral/) dataset.
 
-## The three diffractive encoders
+## Code structure
 
-Each DOE shapes the spectral PSF differently — this is the optical "code" the network learns to invert.
+```
+DeepLens_Hyperspectral/
+├── 0_hello_deeplens_hsi.py        # Build an HSICamera, visualize DOE + spectral PSF
+├── 1_hsi_reconstruction.py        # Train NAFNet against a FIXED DOE
+├── 2_end2end_hsi.py               # Jointly design DOE + network (end-to-end)
+├── 2_hsi_diffractive_surfaces.py  # Render spectral PSFs of the DOE encoders
+├── hsi_dataset.py                 # CaveDataset (CAVE hyperspectral images)
+├── configs/                       # Experiment configs (DOE + network + training)
+├── lenses/paraxiallens/           # DOE lens files (pixel2d, diffracted_rotation, ...)
+├── sensors/flir/                  # Sensor response curves
+└── src/
+    ├── hsi_camera.py              # HSICamera — DOE + sensor render pipeline
+    ├── camera.py                  # Renderer base class
+    ├── deeplens/                  # Vendored DeepLens optics engine
+    ├── sensor/                    # RGBSensor + ISP
+    ├── network/                   # NAFNet reconstruction network
+    └── utils.py                   # Seeding, metrics (PSNR/SSIM), logging
+```
 
-| DOE | Spectral PSF behavior | Role |
-|---|---|---|
-| `Pixel2D` | Freeform height map; compact, wavelength-scaled focus | Learnable / freeform |
-| `DiffractedRotation` | PSF **rotates** with wavelength | Fixed analytic encoder |
-| `RotationallySymmetric` | Concentric rings, chromatic focal shift | Achromat / learnable |
-
-![Diffracted-rotation spectral PSF at 400, 500, 600 and 700 nm](assets/diffracted_rotation_psf_spectral.png)
-
-*The `DiffractedRotation` DOE: its PSF spins to a different angle at each wavelength, encoding spectrum as rotation. See the [Diffractive Surfaces](examples/diffractive_surfaces.md) gallery for all three encoders.*
+!!! note "Built on DeepLens"
+    The optics engine under `src/deeplens/` is the [DeepLens](../deeplens/index.md)
+    library. For the full optics reference — `DiffractiveLens`, diffractive
+    surfaces, and PSF computation — see the
+    [DeepLens documentation](../deeplens/index.md).
 
 ## Getting started
 
 <div class="grid cards" markdown>
-
--   :material-sitemap-outline:{ .lg .middle } __Architecture__
-
-    ---
-
-    How the DOE, sensor, and reconstruction network compose into one
-    differentiable snapshot-HSI pipeline.
-
-    [:octicons-arrow-right-24: Understand the design](architecture.md)
 
 -   :material-flask-outline:{ .lg .middle } __Examples__
 

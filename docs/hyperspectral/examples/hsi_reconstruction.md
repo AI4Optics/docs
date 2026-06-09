@@ -40,10 +40,9 @@ loss = F.l1_loss(spectral_pred, spectral_gt)                     # only the netw
 
 !!! note "The encoder sets the ceiling"
     Because the DOE is frozen, reconstruction quality is bounded by how well the
-    encoder conditions the problem — see
-    [Architecture → spectral encoding](../architecture.md#spectral-encoding-by-a-wavelength-dependent-psf).
-    To improve the optics themselves, design them jointly with the network in the
-    [end-to-end](end2end_hsi.md) example.
+    encoder conditions the problem — a poorly-conditioned PSF cannot be undone by
+    any network. To improve the optics themselves, design them jointly with the
+    network in the [end-to-end](end2end_hsi.md) example.
 
 ## Next steps
 

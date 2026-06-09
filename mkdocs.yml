@@ -164,12 +164,10 @@ nav:
       - Citation: difftmm/citation.md
 
   - Applications:
-      - DeepLens Hyperspectral:
+      - Hyperspectral Imaging:
           - Overview: hyperspectral/index.md
-          - Architecture: hyperspectral/architecture.md
           - Examples:
               - Overview: hyperspectral/examples/index.md
-              - Hello DeepLens HSI: hyperspectral/examples/hello_hsi.md
               - Diffractive Surfaces: hyperspectral/examples/diffractive_surfaces.md
               - HSI Reconstruction: hyperspectral/examples/hsi_reconstruction.md
               - End-to-End Design: hyperspectral/examples/end2end_hsi.md

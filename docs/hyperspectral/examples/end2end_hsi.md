@@ -35,13 +35,7 @@ The training loop is identical to [fixed-DOE reconstruction](hsi_reconstruction.
 - **Joint optimizer** — network at `lr = 1e-4`, DOE at `doe_lr = 0.01` (`AdamW`).
 - **Surface-agnostic** — point `camera.lens_file` at any learnable surface (`RotationallySymmetric`, `Pixel2D`).
 
-!!! warning "DiffractedRotation is not a design target"
-    `DiffractedRotation` is fixed-form — its only continuous parameter is the
-    focal length — so it carries essentially no design freedom. Use it as a
-    *fixed* encoder ([HSI Reconstruction](hsi_reconstruction.md)); use
-    `RotationallySymmetric` or `Pixel2D` for end-to-end design.
-
 ## Next steps
 
 - [Diffractive Surfaces](diffractive_surfaces.md) — the encoders you can design
-- [Architecture](../architecture.md) — how the differentiable pipeline enables co-design
+- [HSI Reconstruction](hsi_reconstruction.md) — train a network against a fixed encoder
