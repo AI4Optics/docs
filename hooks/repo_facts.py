@@ -30,6 +30,7 @@ REPOS: Dict[str, str] = {
     "deeplens": "vccimaging/DeepLens",
     "end2end": "vccimaging/End2endImaging",
     "difftmm": "AI4Optics/DiffTMM",
+    "hyperspectral": "AI4Optics/DeepLens_Hyperspectral",
 }
 
 _CACHE_FILE = Path(".cache/repo_facts.json")

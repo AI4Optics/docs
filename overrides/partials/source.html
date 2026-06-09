@@ -31,6 +31,10 @@
   {% set _repo_url = "https://github.com/AI4Optics/DiffTMM" %}
   {% set _repo_name = "AI4Optics/DiffTMM" %}
   {% set _facts = config.extra.repo_facts.difftmm %}
+{% elif page and page.url.startswith("hyperspectral/") %}
+  {% set _repo_url = "https://github.com/AI4Optics/DeepLens_Hyperspectral" %}
+  {% set _repo_name = "AI4Optics/DeepLens_Hyperspectral" %}
+  {% set _facts = config.extra.repo_facts.hyperspectral %}
 {% endif %}
 <a href="{{ _repo_url }}" title="{{ lang.t('source') }}" class="md-source">
   <div class="md-source__icon md-icon">
