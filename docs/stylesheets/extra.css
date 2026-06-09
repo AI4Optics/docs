@@ -464,3 +464,26 @@ body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
   background-color: var(--md-default-fg-color--lightest);
 }
 
+/* ---------------------------------------------------------------------
+   12. Applications sidebar — drop the redundant top-level header.
+   The "Applications" tab already labels the group in the top bar, so the
+   left sidebar repeating "Applications" above "Hyperspectral Imaging" is
+   noise. On desktop, hide it for the group-of-groups tab only — a top-level
+   section whose first child is itself a section. The project tabs (DeepLens,
+   DiffTMM, End2endImaging) keep their sidebars unchanged, and the mobile
+   drawer keeps the full hierarchy for context.
+   --------------------------------------------------------------------- */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary
+    > .md-nav__list
+    > .md-nav__item--section:has(> nav > .md-nav__list > .md-nav__item--section:first-child)
+    > .md-nav__link,
+  .md-nav--primary
+    > .md-nav__list
+    > .md-nav__item--section:has(> nav > .md-nav__list > .md-nav__item--section:first-child)
+    > nav
+    > .md-nav__title {
+    display: none;
+  }
+}
+
