@@ -1,12 +1,12 @@
 ---
-description: The three diffractive encoders in DeepLens Hyperspectral — Pixel2D, DiffractedRotation, and RotationallySymmetric — with their phase maps and wavelength-dependent PSFs.
+description: The three diffractive encoders in DeepLens Hyperspectral Imaging — Pixel2D, DiffractedRotation, and RotationallySymmetric — with their phase maps and wavelength-dependent PSFs.
 ---
 
 # Diffractive Surfaces
 
 **Script:** `2_hsi_diffractive_surfaces.py`
 
-The DOE is the optical encoder: its wavelength-dependent PSF is what carries spectral information into the RGB capture. DeepLens Hyperspectral ships three `DiffractiveSurface` parameterizations, each interchangeable through the lens-config JSON. This example renders each DOE's phase map and its PSF at 400, 500, 600 and 700 nm (point source at 1 m).
+The DOE is the optical encoder: its wavelength-dependent PSF is what carries spectral information into the RGB capture. DeepLens Hyperspectral Imaging ships three `DiffractiveSurface` parameterizations, each interchangeable through the lens-config JSON. This example renders each DOE's phase map and its PSF at 400, 500, 600 and 700 nm (point source at 1 m).
 
 ## Run
 

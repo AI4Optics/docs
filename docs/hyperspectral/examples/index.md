@@ -1,5 +1,5 @@
 ---
-description: DeepLens Hyperspectral examples — build an HSI camera, visualize the three diffractive encoders, train a reconstructor against a fixed DOE, and run end-to-end design.
+description: DeepLens Hyperspectral Imaging examples — build an HSI camera, visualize the three diffractive encoders, train a reconstructor against a fixed DOE, and run end-to-end design.
 ---
 
 # Examples

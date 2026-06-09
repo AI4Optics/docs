@@ -1,10 +1,10 @@
 ---
-description: DeepLens Hyperspectral is an end-to-end snapshot hyperspectral imaging application built on DeepLens — a diffractive optical element encodes spectral cues into a single RGB capture, and a neural network reconstructs the full spectral cube.
+description: DeepLens Hyperspectral Imaging is an end-to-end snapshot hyperspectral imaging application built on DeepLens — a diffractive optical element encodes spectral cues into a single RGB capture, and a neural network reconstructs the full spectral cube.
 ---
 
-# DeepLens Hyperspectral
+# DeepLens Hyperspectral Imaging
 
-**DeepLens Hyperspectral** (DeepLens HSI) is an end-to-end **snapshot hyperspectral imaging** application built on the [DeepLens](../deeplens/index.md) framework. A diffractive optical element (DOE) encodes spectral information into a single RGB sensor capture, and a neural network reconstructs the full hyperspectral cube — recovering 31 spectral bands across the visible range (400–700 nm) from one shot.
+**DeepLens Hyperspectral Imaging** (DeepLens HSI) is an end-to-end **snapshot hyperspectral imaging** application built on the [DeepLens](../deeplens/index.md) framework. A diffractive optical element (DOE) encodes spectral information into a single RGB sensor capture, and a neural network reconstructs the full hyperspectral cube — recovering 31 spectral bands across the visible range (400–700 nm) from one shot.
 
 Because the whole pipeline — DOE wave optics, sensor response, and reconstruction network — is differentiable, the optics and the algorithm can be **co-designed end-to-end**: gradients from the reconstruction loss flow all the way back into the DOE surface.
 

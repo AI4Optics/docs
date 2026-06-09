@@ -1,10 +1,10 @@
 ---
-description: How to cite DeepLens Hyperspectral and the diffractive-optics methods it builds on.
+description: How to cite DeepLens Hyperspectral Imaging and the diffractive-optics methods it builds on.
 ---
 
 # Citation
 
-DeepLens Hyperspectral is an application example built on the [DeepLens](../deeplens/index.md) framework. If you use this code or these ideas in your research, please cite the DeepLens framework paper:
+DeepLens Hyperspectral Imaging is an application example built on the [DeepLens](../deeplens/index.md) framework. If you use this code or these ideas in your research, please cite the DeepLens framework paper:
 
 > X. Yang, M. Souza, K. Wang, P. Chakravarthula, Q. Fu, and W. Heidrich,
 > "End-to-End Hybrid Refractive-Diffractive Lens Design with Differentiable Ray-Wave Model,"
@@ -47,4 +47,4 @@ The freeform DOE height map (`planar_doe.npy`) was provided by [Jingyue Ma](http
 
 ## License
 
-DeepLens Hyperspectral is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+DeepLens Hyperspectral Imaging is released under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
