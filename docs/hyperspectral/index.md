@@ -1,10 +1,10 @@
 ---
-description: DeepLens Hyperspectral Imaging is an end-to-end snapshot hyperspectral imaging application built on DeepLens — a diffractive optical element encodes spectral cues into a single RGB capture, and a neural network reconstructs the full spectral cube.
+description: End-to-end snapshot hyperspectral imaging on DeepLens — a diffractive optical element encodes spectral cues into a single RGB capture, reconstructed by a neural network into a 31-band spectral cube.
 ---
 
 # DeepLens Hyperspectral Imaging
 
-**DeepLens Hyperspectral Imaging** (DeepLens HSI) is an end-to-end **snapshot hyperspectral imaging** application built on the [DeepLens](../deeplens/index.md) framework. A diffractive optical element (DOE) encodes spectral information into a single RGB sensor capture, and a neural network reconstructs the full hyperspectral cube — recovering 31 spectral bands across the visible range (400–700 nm) from one shot.
+**DeepLens Hyperspectral Imaging** (DeepLens HSI) is an end-to-end **snapshot hyperspectral imaging** application built on the [DeepLens](../deeplens/index.md) framework. A diffractive optical element (DOE) encodes spectral information into a single RGB sensor capture, and a neural network reconstructs the full spectral cube — recovering 31 spectral bands across the visible range (400–700 nm) from one shot.
 
 Because the whole pipeline — DOE wave optics, sensor response, and reconstruction network — is differentiable, the optics and the algorithm can be **co-designed end-to-end**: gradients from the reconstruction loss flow all the way back into the DOE surface.
 
@@ -14,7 +14,7 @@ Spectral cube  ──▶  [ DOE optics ]  ──▶  RGB capture  ──▶  [ N
  400–700 nm          wavelength-dependent PSF                network
 ```
 
-## Two workflows
+## Two Workflows
 
 <div class="grid cards" markdown>
 
@@ -33,28 +33,27 @@ Spectral cube  ──▶  [ DOE optics ]  ──▶  RGB capture  ──▶  [ N
     ---
 
     Jointly optimize the DOE *and* the network. The learnable surface parameters
-    join the optimizer alongside the network weights, so the optics learn to
-    encode exactly what the reconstructor needs.
+    join the optimizer alongside the network weights, so the optics learn an
+    encoding the reconstructor can invert well.
 
     [:octicons-arrow-right-24: End-to-end design](examples/end2end_hsi.md)
 
 </div>
 
-## Key features
+## Key Features
 
 - **Differentiable DOE optics** — built on DeepLens's `DiffractiveLens` (scalar wave optics). The DOE's per-wavelength PSF is computed differentiably, so it can be optimized with autograd.
 - **Multiple DOE parameterizations** — freeform `Pixel2D`, analytic `DiffractedRotation` (Jeon et al. 2019), and a `RotationallySymmetric` achromat (Dun et al. 2020), all interchangeable through a single lens-config file.
 - **Hyperspectral camera model** — `HSICamera` renders a spectral cube into an RGB capture through the DOE and a real sensor's measured response curves (FLIR BFS-U3-200S7C-C).
 - **Neural reconstruction** — a `NAFNet` maps the 3-channel capture back to a 31-band spectral cube, trained on the [CAVE](https://www.cs.columbia.edu/CAVE/databases/multispectral/) dataset.
 
-## Code structure
+## Code Structure
 
 ```
 DeepLens_Hyperspectral/
-├── 0_hello_deeplens_hsi.py        # Build an HSICamera, visualize DOE + spectral PSF
+├── 0_hello_deeplens_hsi.py        # Build an HSICamera; render DOE phase + spectral PSF per encoder
 ├── 1_hsi_reconstruction.py        # Train NAFNet against a FIXED DOE
 ├── 2_end2end_hsi.py               # Jointly design DOE + network (end-to-end)
-├── 2_hsi_diffractive_surfaces.py  # Render spectral PSFs of the DOE encoders
 ├── hsi_dataset.py                 # CaveDataset (CAVE hyperspectral images)
 ├── configs/                       # Experiment configs (DOE + network + training)
 ├── lenses/paraxiallens/           # DOE lens files (pixel2d, diffracted_rotation, ...)
@@ -74,7 +73,7 @@ DeepLens_Hyperspectral/
     surfaces, and PSF computation — see the
     [DeepLens documentation](../deeplens/index.md).
 
-## Getting started
+## Getting Started
 
 <div class="grid cards" markdown>
 

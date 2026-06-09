@@ -40,7 +40,7 @@
     {% if first.children %}
       {#- Group-of-groups tab (e.g. Applications): pull-down of child sections. -#}
       <li class="{{ class }} md-tabs__item--dropdown">
-        <a href="{{ first_leaf_url(first) | trim }}" class="md-tabs__link">
+        <a href="{{ first_leaf_url(first) | trim }}" class="md-tabs__link" aria-haspopup="true">
           {{ nav_item.title }}
         </a>
         <ul class="md-tabs__menu" aria-label="{{ nav_item.title }}">

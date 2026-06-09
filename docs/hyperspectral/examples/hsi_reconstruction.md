@@ -1,5 +1,5 @@
 ---
-description: Train a NAFNet to reconstruct a 31-band hyperspectral cube from a single RGB capture taken through a fixed diffractive encoder.
+description: Train a NAFNet to reconstruct a 31-band spectral cube from a single RGB capture taken through a fixed diffractive encoder.
 ---
 
 # HSI Reconstruction
