@@ -1,0 +1,70 @@
+{#-
+  AI4Optics override of Material's tabs-item.html.
+
+  Material 9 has no dropdown navigation tabs: a top-level tab whose first child
+  is itself a section (e.g. "Applications") normally collapses to a single deep
+  link. We override that one branch to render the tab as a hover/focus pull-down
+  listing its child sections (the individual applications), so new applications
+  added under "Applications" in mkdocs.yml appear in the menu automatically.
+
+  All other tabs (DeepLens, End2endImaging, DiffTMM — whose first child is a leaf
+  "Overview" page) keep Material's default single-link behavior. Based on the
+  upstream macro from material 9.7.x; styling lives in stylesheets/extra.css
+  (.md-tabs__menu).
+-#}
+{% macro render_content(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% if nav_item == ref or "navigation.indexes" in features %}
+    {% if nav_item.is_index and nav_item.meta.icon %}
+      {% include ".icons/" ~ nav_item.meta.icon ~ ".svg" %}
+    {% endif %}
+  {% endif %}
+  {{ ref.title }}
+{% endmacro %}
+{#- URL of the first descendant page (leaf) of a section. -#}
+{% macro first_leaf_url(nav_item) -%}
+  {%- if nav_item.children -%}
+    {{- first_leaf_url(nav_item.children | first) -}}
+  {%- else -%}
+    {{- nav_item.url | url -}}
+  {%- endif -%}
+{%- endmacro %}
+{% macro render(nav_item, ref) %}
+  {% set ref = ref or nav_item %}
+  {% set class = "md-tabs__item" %}
+  {% if ref.active %}
+    {% set class = class ~ " md-tabs__item--active" %}
+  {% endif %}
+  {% if nav_item.children %}
+    {% set first = nav_item.children | first %}
+    {% if first.children %}
+      {#- Group-of-groups tab (e.g. Applications): pull-down of child sections. -#}
+      <li class="{{ class }} md-tabs__item--dropdown">
+        <a href="{{ first_leaf_url(first) | trim }}" class="md-tabs__link">
+          {{ nav_item.title }}
+        </a>
+        <ul class="md-tabs__menu" aria-label="{{ nav_item.title }}">
+          {% for child in nav_item.children %}
+            <li class="md-tabs__menu-item">
+              <a href="{{ first_leaf_url(child) | trim }}" class="md-tabs__menu-link">
+                {{ child.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% else %}
+      <li class="{{ class }}">
+        <a href="{{ first.url | url }}" class="md-tabs__link">
+          {{ render_content(first, ref) }}
+        </a>
+      </li>
+    {% endif %}
+  {% else %}
+    <li class="{{ class }}">
+      <a href="{{ nav_item.url | url }}" class="md-tabs__link">
+        {{ render_content(nav_item) }}
+      </a>
+    </li>
+  {% endif %}
+{% endmacro %}

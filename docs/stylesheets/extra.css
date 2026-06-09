@@ -385,3 +385,82 @@ body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
   border-radius: 0.5rem;
 }
 
+/* ---------------------------------------------------------------------
+   11. Applications dropdown — pull-down menu in the navigation tabs.
+   Material 9 has no native tab dropdowns; overrides/partials/tabs-item.html
+   renders a <ul.md-tabs__menu> for "group of groups" tabs (e.g. Applications),
+   and this styles it as a hover/focus pull-down listing each application.
+   The tab bar is desktop-only, so on mobile the full tree stays in the drawer
+   and this menu never shows.
+   --------------------------------------------------------------------- */
+
+/* The tab bar clips its children (overflow:auto + contain:content on the list);
+   let the dropdown escape below the bar. With a handful of short tabs this does
+   not cost the horizontal-scroll affordance on desktop. */
+.md-tabs,
+.md-tabs__list {
+  overflow: visible;
+}
+.md-tabs__list {
+  contain: none;
+}
+
+.md-tabs__item--dropdown {
+  position: relative;
+}
+
+/* The pull-down panel: a light card aligned under the tab label. Hidden until
+   the tab is hovered or a menu link is keyboard-focused. */
+.md-tabs__menu {
+  position: absolute;
+  top: 100%;
+  left: 0.4rem;
+  z-index: 10;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0.3rem 0;
+  list-style: none;
+  background-color: var(--md-default-bg-color);
+  border-radius: 0.2rem;
+  box-shadow:
+    0 0.2rem 0.5rem rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.25rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.md-tabs__item--dropdown:hover .md-tabs__menu,
+.md-tabs__item--dropdown:focus-within .md-tabs__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.md-tabs__menu-item {
+  margin: 0;
+}
+
+.md-tabs__menu-link {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--md-default-fg-color--light);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.md-tabs__menu-link:hover,
+.md-tabs__menu-link:focus {
+  color: var(--md-accent-fg-color);
+  background-color: var(--md-default-fg-color--lightest);
+}
+
