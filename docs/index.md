@@ -64,7 +64,7 @@ End-to-end imaging applications built on top of our simulators.
     dispersive optics and reconstruction networks for snapshot
     hyperspectral cameras.
 
-    [:octicons-arrow-right-24: View on GitHub](https://github.com/AI4Optics/DeepLens_Hyperspectral)
+    [:octicons-arrow-right-24: Open the DeepLens Hyperspectral docs](hyperspectral/index.md)
 
 </div>
 
