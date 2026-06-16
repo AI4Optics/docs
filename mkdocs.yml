@@ -172,6 +172,9 @@ nav:
               - HSI Reconstruction: hyperspectral/examples/hsi_reconstruction.md
               - End-to-End Design: hyperspectral/examples/end2end_hsi.md
           - Citation: hyperspectral/citation.md
+  - Blogs:
+      - Overview: blog/index.md
+      - Four Pillars of Next-Gen Optical Design: blog/four-pillars-of-next-gen-optical-design.md
   - Contribute:
       - Overview: contribute/index.md
       - Development Setup: contribute/setup.md
