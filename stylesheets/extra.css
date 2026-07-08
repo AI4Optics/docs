@@ -1,0 +1,503 @@
+/* =====================================================================
+   DeepLens documentation — LangGraph/Mintlify-inspired layout
+   ---------------------------------------------------------------------
+   Clean, readable docs styling modelled on the LangGraph docs:
+     - bold, full-contrast headings with NO divider rules
+       (hierarchy comes from size + weight, not borders)
+     - a narrower, comfortable reading column
+     - generous line-height with controlled vertical rhythm
+     - card-based navigation for "Getting Started"
+
+   All overrides use Material's CSS variables so the light ("default")
+   and dark ("slate") palettes both stay correct.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   0. Header chrome — refined near-black top bar (both palettes).
+   The DeepLens logo is a light, glassy render, so a near-black header
+   keeps it crisp while reading cleaner than the default saturated bar.
+   Links and accents stay indigo so interactive elements remain obvious.
+   --------------------------------------------------------------------- */
+body[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1b1b1f;
+  --md-primary-fg-color--light: #2b2b30;
+  --md-primary-fg-color--dark: #0f0f12;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  /* keep interactive elements indigo, not near-black */
+  --md-typeset-a-color: #4051b5;
+  --md-accent-fg-color: #4051b5;
+}
+
+body[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #15151a;
+  --md-primary-fg-color--light: #26262c;
+  --md-primary-fg-color--dark: #0b0b0e;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-typeset-a-color: #8c9eff;
+  --md-accent-fg-color: #8c9eff;
+}
+
+/* Separate the (dark) header from the page. A downward shadow reads correctly
+   against the white page body below in light mode and stays subtle in dark. */
+.md-header {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Taller header bar. Material's row is 2.4rem; raise it and move the sticky
+   sidebar offset in lockstep so the nav still tucks just under the header. */
+.md-header__inner {
+  height: 3.2rem;
+}
+.md-sidebar {
+  top: 3.2rem;
+}
+
+/* The umbrella is "AI4Optics", so the top-left logo image is dropped — with no
+   `theme.logo` set, Material would otherwise fall back to its default book icon.
+   Hide the logo button so only the AI4Optics wordmark remains in the header. */
+.md-header__button.md-logo {
+  display: none;
+}
+
+/* The Overview page already carries the DeepLens heading, so the redundant
+   site-title at the top of the left navigation sidebar is hidden. Section
+   titles (Get Started, API Reference, …) are nested deeper and are unaffected. */
+.md-nav--primary > .md-nav__title {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------
+   0b. Layout width — use more of the viewport. Material caps the content
+   grid at 61rem and the side nav at ~12rem; widen both so the menu and
+   main content have room to breathe on large screens.
+   --------------------------------------------------------------------- */
+.md-grid {
+  max-width: 86rem;
+}
+
+@media screen and (min-width: 76.25em) {
+  /* Wider left navigation sidebar (default ~12.1rem). */
+  .md-sidebar--primary {
+    width: 14rem;
+  }
+  /* Slightly wider table-of-contents column. */
+  .md-sidebar--secondary {
+    width: 12.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   1. Font scale. Material's base is 125% (root ~20px) and ramps to
+   137.5%/150% on wide screens. Capping only the wide steps would invert
+   the scale (narrow screens ending up larger than wide ones), so we pin
+   the base too — a flat, monotonic ramp: ~17px, then ~18px on ultra-wide.
+   With .md-typeset at 0.84rem this keeps body text ~14-15px at all widths.
+   --------------------------------------------------------------------- */
+html {
+  font-size: 106.25%;            /* root ~17px (overrides Material's 125% base) */
+}
+@media screen and (min-width: 100em) {
+  html { font-size: 106.25%; }   /* ~17px (overrides Material's 137.5%) */
+}
+@media screen and (min-width: 125em) {
+  html { font-size: 112.5%; }    /* ~18px on ultra-wide (overrides 150%) */
+}
+
+/* ---------------------------------------------------------------------
+   2. Body copy — comfortable, slightly tighter than before so the
+   content no longer dwarfs the navigation chrome.
+   --------------------------------------------------------------------- */
+.md-typeset {
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+/* ---------------------------------------------------------------------
+   2b. Navigation sizing — Material defaults the side nav and
+   table-of-contents to a tiny 0.7rem, which looked cramped next to the
+   content. Bring them up so the menus and prose feel balanced.
+   --------------------------------------------------------------------- */
+.md-nav {
+  font-size: 0.78rem;
+}
+
+.md-nav__title {
+  font-size: 0.72rem;
+}
+
+/* A little more breathing room between side-nav links. */
+.md-nav__item .md-nav__link {
+  margin-top: 0.45em;
+}
+
+/* ---------------------------------------------------------------------
+   2c. Top navigation tabs (Home / DeepLens / … the project switcher).
+   Material's default is a small ~0.7rem; enlarge it so the project tabs
+   read as the primary navigation.
+   --------------------------------------------------------------------- */
+.md-tabs__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------
+   2d. Brand wordmark "AI4Optics" — larger, and left-aligned with the
+   "Home" tab directly beneath it. (Only the brand topic is enlarged; the
+   second, scroll-reveal page-title topic keeps its default size.)
+
+   Geometry: "Home" lives in the centered content grid (max-width 86rem) at a
+   0.8rem inset (0.2rem list + 0.6rem item). The brand lives in the full-width
+   header at 0.2rem padding + its own margin. Setting the title margin to
+   0.6rem puts the brand at 0.8rem too — aligned below the grid width, where
+   the grid gutter is ~0. Above the grid width, track the gutter so they stay
+   aligned (exact on macOS overlay scrollbars; within a few px elsewhere).
+   --------------------------------------------------------------------- */
+.md-header__topic:not([data-md-component]) {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.md-header__title {
+  margin-left: 0.6rem;
+}
+
+@media screen and (min-width: 86.25rem) {
+  .md-header__title {
+    margin-left: calc((100vw - 86rem) / 2 + 0.6rem);
+  }
+}
+
+/* Divider line between a project's sections (Overview │ Get Started │ API
+   Reference │ Examples │ Contributing). With `navigation.tabs`, the project
+   tab is "lifted" and its sections render one level deeper than the tabs, so
+   the dividers must target the SECOND-level nav items — the children of a
+   project tab — not the top (tab) level, which is hidden on desktop. This
+   selector matches in both the desktop lifted sidebar and the mobile drawer. */
+.md-nav--primary
+  > .md-nav__list
+  > .md-nav__item
+  > .md-nav
+  > .md-nav__list
+  > .md-nav__item {
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+/* No divider above the first section (Overview). */
+.md-nav--primary
+  > .md-nav__list
+  > .md-nav__item
+  > .md-nav
+  > .md-nav__list
+  > .md-nav__item:first-child {
+  border-top: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* ---------------------------------------------------------------------
+   3. Reading column — narrower measure, like the LangGraph docs.
+   Content sits left of the table-of-contents with breathing room.
+   --------------------------------------------------------------------- */
+.md-content__inner {
+  max-width: 56rem;
+  margin-top: 0;
+  padding-top: 1.2rem;
+}
+
+/* Remove Material's top spacer pseudo-element; we set padding-top manually. */
+.md-content__inner::before {
+  height: 0;
+}
+
+/* ---------------------------------------------------------------------
+   4. Headings — bold, dark, NO dividers. Clean hierarchy by size/weight.
+   --------------------------------------------------------------------- */
+.md-typeset h1 {
+  font-size: 1.85em;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--md-default-fg-color);
+  margin: 0 0 0.5em;
+}
+
+.md-typeset h2 {
+  font-size: 1.38em;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--md-default-fg-color);
+  margin: 2em 0 0.7em;
+  padding: 0;
+  border: none;
+}
+
+.md-typeset h3 {
+  font-size: 1.15em;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--md-default-fg-color);
+  margin: 1.6em 0 0.5em;
+}
+
+.md-typeset h4 {
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 1.2em 0 0.4em;
+}
+
+/* No oversized gap before the very first heading on a page. */
+.md-typeset h1:first-child,
+.md-typeset h2:first-child,
+.md-typeset h3:first-child {
+  margin-top: 0;
+}
+
+/* ---------------------------------------------------------------------
+   5. Lead paragraph — a page tagline rendered as a larger muted subtitle.
+   Scoped to a bold-only first paragraph (e.g. the homepage tagline) via
+   :has(), so ordinary intro paragraphs on API/reference pages are NOT
+   restyled (which would mute their inline code and links).
+   --------------------------------------------------------------------- */
+.md-typeset h1 + p:has(> strong:only-child) {
+  font-size: 1.15em;
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--md-default-fg-color--light);
+  margin: 0 0 1.2em;
+}
+
+.md-typeset h1 + p:has(> strong:only-child) > strong {
+  font-weight: 500;
+  color: inherit;
+}
+
+/* ---------------------------------------------------------------------
+   6. Vertical rhythm — tighten gaps between blocks and list items.
+   --------------------------------------------------------------------- */
+.md-typeset p,
+.md-typeset ol,
+.md-typeset ul {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+.md-typeset li {
+  margin-bottom: 0.35em;
+}
+
+.md-typeset li:last-child {
+  margin-bottom: 0;
+}
+
+.md-typeset li > ul,
+.md-typeset li > ol {
+  margin: 0.35em 0 0.35em 0.2em;
+}
+
+/* ---------------------------------------------------------------------
+   7. Navigation cards — the signature LangGraph "Getting Started" grid.
+   Refines Material's built-in .grid.cards with softer borders, a larger
+   radius, and a subtle hover lift toward the accent color.
+   --------------------------------------------------------------------- */
+.md-typeset .grid.cards {
+  grid-gap: 0.9rem;
+  margin: 1em 0;
+}
+
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  padding: 1rem 1.1rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* A darker shadow so the hover lift is visible on the slate (dark) palette. */
+body[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li:hover {
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.md-typeset .grid.cards > ul > li > hr {
+  margin: 0.6em 0;
+  border-color: var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .grid.cards .twemoji,
+.md-typeset .grid.cards .lg {
+  color: var(--md-accent-fg-color);
+}
+
+/* Single-column card grid — constrains a grid to one card at exactly the
+   width of one column in the 3-card simulator grid (⅓ of content minus 2 gaps). */
+.md-typeset .grid.cards.single-col {
+  grid-template-columns: calc((100% - 2 * 0.9rem) / 3);
+}
+
+/* ---------------------------------------------------------------------
+   8. Code — match the smaller scale.
+   --------------------------------------------------------------------- */
+.md-typeset code {
+  font-size: 0.82em;
+  padding: 0.1em 0.35em;
+}
+
+.md-typeset pre > code {
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+/* ---------------------------------------------------------------------
+   9. Tables — denser cells, clearer header.
+   --------------------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  font-size: 0.85em;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.5em 0.9em;
+}
+
+.md-typeset table:not([class]) th {
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------
+   10. Admonitions / details — trim the default padding a touch.
+   --------------------------------------------------------------------- */
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.85rem;
+  margin: 1em 0;
+  border-radius: 0.5rem;
+}
+
+/* ---------------------------------------------------------------------
+   11. Applications dropdown — pull-down menu in the navigation tabs.
+   Material 9 has no native tab dropdowns; overrides/partials/tabs-item.html
+   renders a <ul.md-tabs__menu> for "group of groups" tabs (e.g. Applications),
+   and this styles it as a hover/focus pull-down listing each application.
+   The tab bar is desktop-only, so on mobile the full tree stays in the drawer
+   and this menu never shows.
+   --------------------------------------------------------------------- */
+
+/* The tab bar clips its children (overflow:auto + contain:content on the list);
+   let the dropdown escape below the bar. With a handful of short tabs this does
+   not cost the horizontal-scroll affordance on desktop. */
+.md-tabs,
+.md-tabs__list {
+  overflow: visible;
+}
+.md-tabs__list {
+  contain: none;
+}
+
+.md-tabs__item--dropdown {
+  position: relative;
+}
+
+/* The pull-down panel: a light card aligned under the tab label. Hidden until
+   the tab is hovered or a menu link is keyboard-focused. */
+.md-tabs__menu {
+  position: absolute;
+  top: 100%;
+  left: 0.4rem;
+  z-index: 10;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0.3rem 0;
+  list-style: none;
+  background-color: var(--md-default-bg-color);
+  border-radius: 0.2rem;
+  box-shadow:
+    0 0.2rem 0.5rem rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.25rem);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.md-tabs__item--dropdown:hover .md-tabs__menu,
+.md-tabs__item--dropdown:focus-within .md-tabs__menu,
+/* Reveal when the trigger link itself is focused (the menu <ul> is its adjacent
+   sibling). Without this, the menu stays visibility:hidden and its links never
+   enter the tab order, so :focus-within could never fire — a keyboard dead-end.
+   Tabbing onto the trigger now opens the menu, and :focus-within keeps it open
+   as focus moves through the items. */
+.md-tabs__item--dropdown .md-tabs__link:focus + .md-tabs__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.md-tabs__menu-item {
+  margin: 0;
+}
+
+.md-tabs__menu-link {
+  display: block;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--md-default-fg-color--light);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.md-tabs__menu-link:hover,
+.md-tabs__menu-link:focus {
+  color: var(--md-accent-fg-color);
+  background-color: var(--md-default-fg-color--lightest);
+}
+
+/* ---------------------------------------------------------------------
+   12. Applications sidebar — drop the redundant top-level header.
+   The "Applications" tab already labels the group in the top bar, so the
+   left sidebar repeating "Applications" above "Hyperspectral Imaging" is
+   noise. On desktop, hide it for the group-of-groups tab only — a top-level
+   section whose first child is itself a section. The project tabs (DeepLens,
+   DiffTMM, End2endImaging) keep their sidebars unchanged, and the mobile
+   drawer keeps the full hierarchy for context.
+
+   INVARIANT: this relies on every other top-level tab (DeepLens, DiffTMM,
+   End2endImaging, Contribute) having a leaf "Overview" as its FIRST nav child.
+   If a future project's first child becomes a section — or a second
+   Applications-style group is added that SHOULD keep its header — this rule
+   will also hide that header. In that case narrow the match (e.g. emit a
+   per-group marker in overrides/partials/tabs-item.html and key the CSS off
+   it) rather than relying on nav ordering.
+   --------------------------------------------------------------------- */
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary
+    > .md-nav__list
+    > .md-nav__item--section:has(> nav > .md-nav__list > .md-nav__item--section:first-child)
+    > .md-nav__link,
+  .md-nav--primary
+    > .md-nav__list
+    > .md-nav__item--section:has(> nav > .md-nav__list > .md-nav__item--section:first-child)
+    > nav
+    > .md-nav__title {
+    display: none;
+  }
+}
+
