@@ -10,7 +10,8 @@ to GitHub Pages at <https://ai4optics.github.io/docs/>.
 
 ## Deployment
 
-Every push to `main` triggers `.github/workflows/deploy.yml`, which checks out the
+Deployment is manual: trigger `.github/workflows/deploy.yml` from the Actions tab
+("Run workflow") or with `gh workflow run "Deploy docs"`. It checks out the
 `deeplens-src` submodule, installs the docs toolchain, and runs `mkdocs gh-deploy`.
 `mkdocstrings`/`griffe` renders the API reference by **statically parsing** the
 DeepLens source under `deeplens-src/` (via the `paths:` setting in `mkdocs.yml`) —
